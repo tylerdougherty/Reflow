@@ -106,9 +106,13 @@ class ABBYYFile < Nokogiri::XML::SAX::Document
         ww = @right - @left
         wh = @bot - @top
         wh = wh > @line_spacing ? @line_spacing : wh
+        # word height on the word element just chooses how much of the background shows up, while
+        #   on the wrap element it is the actual size on the page
+
         # css entry for word
         $css.print "#word_#{@word_num} { width:#{ww}px; height:#{wh}px; "
         $css.puts "background-position:-#{wl}px -#{wt}px; } /* #{@current_word} */"
+
         # compute wrap dimensions if necessary
         if @line_spacing != 0 and wh < @line_spacing
             top_to_baseline = @line_spacing * @baseline_percent
