@@ -1,3 +1,4 @@
+/* bunches of debug settings */
 page { zoom:25%; width:auto;}
 #container { width: auto; height: 600px; overflow: hidden; background-color: green; }
 word { display: inline-block; font-size: 400%; color: rgba(0, 0, 0, 0); vertical-align: bottom; }
@@ -7,378 +8,378 @@ word { background-image:url(m21.png); background-size:2718; }
 #word_0 { width:664px; height:0px; background-position:-875px -972px; } /* PKEFACE, */
 #word_1 { width:297px; height:108px; background-position:-303px -1348px; } /* THE  */
 #word_2 { width:137px; height:65px; background-position:-647px -1349px; } /* full  */
-#wrap_2 { padding:8.0px 4px 35.0px; }
+#wrap_2 { padding:8px 4px 35px; height:65px; }
 #word_3 { width:152px; height:67px; background-position:-829px -1347px; } /* title  */
-#wrap_3 { padding:6.0px 4px 35.0px; }
+#wrap_3 { padding:6px 4px 35px; height:67px; }
 #word_4 { width:76px; height:65px; background-position:-1030px -1348px; } /* of  */
-#wrap_4 { padding:7.0px 4px 36.0px; }
+#wrap_4 { padding:7px 4px 36px; height:65px; }
 #word_5 { width:142px; height:67px; background-position:-1136px -1346px; } /* this  */
-#wrap_5 { padding:5.0px 4px 36.0px; }
+#wrap_5 { padding:5px 4px 36px; height:67px; }
 #word_6 { width:196px; height:68px; background-position:-1310px -1345px; } /* work  */
-#wrap_6 { padding:4.0px 4px 36.0px; }
+#wrap_6 { padding:4px 4px 36px; height:68px; }
 #word_7 { width:78px; height:89px; background-position:-1551px -1345px; } /* is,  */
-#wrap_7 { padding:4.0px 4px 15.0px; }
+#wrap_7 { padding:4px 4px 15px; height:89px; }
 #word_8 { width:160px; height:66px; background-position:-1670px -1348px; } /* "De  */
-#wrap_8 { padding:7.0px 4px 35.0px; }
+#wrap_8 { padding:7px 4px 35px; height:66px; }
 #word_9 { width:169px; height:68px; background-position:-1863px -1347px; } /* Vita  */
-#wrap_9 { padding:6.0px 4px 34.0px; }
+#wrap_9 { padding:6px 4px 34px; height:68px; }
 #word_10 { width:69px; height:62px; background-position:-2063px -1354px; } /* et */
-#wrap_10 { padding:13.0px 4px 33.0px; }
+#wrap_10 { padding:13px 4px 33px; height:62px; }
 #word_11 { width:365px; height:67px; background-position:-513px -1457px; } /* Beneficiis  */
-#wrap_11 { padding:7.0px 4px 34.0px; }
+#wrap_11 { padding:7px 4px 34px; height:67px; }
 #word_12 { width:171px; height:66px; background-position:-926px -1456px; } /* Jesu  */
-#wrap_12 { padding:6.0px 4px 36.0px; }
+#wrap_12 { padding:6px 4px 36px; height:66px; }
 #word_13 { width:260px; height:67px; background-position:-1148px -1455px; } /* Christi  */
-#wrap_13 { padding:5.0px 4px 36.0px; }
+#wrap_13 { padding:5px 4px 36px; height:67px; }
 #word_14 { width:383px; height:68px; background-position:-1457px -1455px; } /* Salvatoris  */
-#wrap_14 { padding:5.0px 4px 35.0px; }
+#wrap_14 { padding:5px 4px 35px; height:68px; }
 #word_15 { width:243px; height:67px; background-position:-1889px -1457px; } /* Nostri */
-#wrap_15 { padding:7.0px 4px 34.0px; }
+#wrap_15 { padding:7px 4px 34px; height:67px; }
 #word_16 { width:491px; height:67px; background-position:-297px -1567px; } /* Meditationes  */
-#wrap_16 { padding:9.0px 4px 32.0px; }
+#wrap_16 { padding:9px 4px 32px; height:67px; }
 #word_17 { width:68px; height:65px; background-position:-845px -1565px; } /* et  */
-#wrap_17 { padding:7.0px 4px 36.0px; }
+#wrap_17 { padding:7px 4px 36px; height:65px; }
 #word_18 { width:422px; height:66px; background-position:-977px -1564px; } /* Orationes."  */
-#wrap_18 { padding:6.0px 4px 36.0px; }
+#wrap_18 { padding:6px 4px 36px; height:66px; }
 #word_19 { width:85px; height:65px; background-position:-1493px -1565px; } /* In  */
-#wrap_19 { padding:7.0px 4px 36.0px; }
+#wrap_19 { padding:7px 4px 36px; height:65px; }
 #word_20 { width:117px; height:65px; background-position:-1634px -1565px; } /* the  */
-#wrap_20 { padding:7.0px 4px 36.0px; }
+#wrap_20 { padding:7px 4px 36px; height:65px; }
 #word_21 { width:187px; height:66px; background-position:-1812px -1565px; } /* table  */
-#wrap_21 { padding:7.0px 4px 35.0px; }
+#wrap_21 { padding:7px 4px 35px; height:66px; }
 #word_22 { width:76px; height:64px; background-position:-2057px -1566px; } /* of */
-#wrap_22 { padding:8.0px 4px 36.0px; }
+#wrap_22 { padding:8px 4px 36px; height:64px; }
 #word_23 { width:321px; height:66px; background-position:-298px -1676px; } /* contents  */
-#wrap_23 { padding:9.0px 4px 33.0px; }
+#wrap_23 { padding:9px 4px 33px; height:66px; }
 #word_24 { width:116px; height:64px; background-position:-664px -1676px; } /* for  */
-#wrap_24 { padding:9.0px 4px 35.0px; }
+#wrap_24 { padding:9px 4px 35px; height:64px; }
 #word_25 { width:118px; height:65px; background-position:-825px -1674px; } /* the  */
-#wrap_25 { padding:7.0px 4px 36.0px; }
+#wrap_25 { padding:7px 4px 36px; height:65px; }
 #word_26 { width:191px; height:67px; background-position:-990px -1672px; } /* third  */
-#wrap_26 { padding:5.0px 4px 36.0px; }
+#wrap_26 { padding:5px 4px 36px; height:67px; }
 #word_27 { width:279px; height:67px; background-position:-1223px -1672px; } /* volume  */
-#wrap_27 { padding:5.0px 4px 36.0px; }
+#wrap_27 { padding:5px 4px 36px; height:67px; }
 #word_28 { width:75px; height:66px; background-position:-1552px -1673px; } /* of  */
-#wrap_28 { padding:6.0px 4px 36.0px; }
+#wrap_28 { padding:6px 4px 36px; height:66px; }
 #word_29 { width:471px; height:67px; background-position:-1661px -1673px; } /* Sommalius's */
-#wrap_29 { padding:6.0px 4px 35.0px; }
+#wrap_29 { padding:6px 4px 35px; height:67px; }
 #word_30 { width:34px; height:34px; background-position:-303px -1789px; } /* " */
-#wrap_30 { padding:14.0px 4px 60.0px; }
+#wrap_30 { padding:14px 4px 60px; height:34px; }
 #word_31 { width:229px; height:86px; background-position:-361px -1784px; } /* Opera  */
-#wrap_31 { padding:9.0px 4px 13.0px; }
+#wrap_31 { padding:9px 4px 13px; height:86px; }
 #word_32 { width:297px; height:66px; background-position:-646px -1782px; } /* Omnia'*  */
-#wrap_32 { padding:7.0px 4px 35.0px; }
+#wrap_32 { padding:7px 4px 35px; height:66px; }
 #word_33 { width:76px; height:65px; background-position:-1001px -1782px; } /* of  */
-#wrap_33 { padding:7.0px 4px 36.0px; }
+#wrap_33 { padding:7px 4px 36px; height:65px; }
 #word_34 { width:303px; height:66px; background-position:-1126px -1781px; } /* Thomas  */
-#wrap_34 { padding:6.0px 4px 36.0px; }
+#wrap_34 { padding:6px 4px 36px; height:66px; }
 #word_35 { width:40px; height:65px; background-position:-1478px -1782px; } /* a  */
-#wrap_35 { padding:7.0px 4px 36.0px; }
+#wrap_35 { padding:7px 4px 36px; height:65px; }
 #word_36 { width:347px; height:87px; background-position:-1565px -1781px; } /* Kempis*  */
-#wrap_36 { padding:6.0px 4px 15.0px; }
+#wrap_36 { padding:6px 4px 15px; height:87px; }
 #word_37 { width:57px; height:66px; background-position:-1962px -1781px; } /* it  */
-#wrap_37 { padding:6.0px 4px 36.0px; }
+#wrap_37 { padding:6px 4px 36px; height:66px; }
 #word_38 { width:61px; height:66px; background-position:-2071px -1781px; } /* is */
-#wrap_38 { padding:6.0px 4px 36.0px; }
+#wrap_38 { padding:6px 4px 36px; height:66px; }
 #word_39 { width:254px; height:84px; background-position:-299px -1893px; } /* simply  */
-#wrap_39 { padding:10.0px 4px 14.0px; }
+#wrap_39 { padding:10px 4px 14px; height:84px; }
 #word_40 { width:265px; height:84px; background-position:-585px -1892px; } /* spoken  */
-#wrap_40 { padding:9.0px 4px 15.0px; }
+#wrap_40 { padding:9px 4px 15px; height:84px; }
 #word_41 { width:75px; height:64px; background-position:-900px -1891px; } /* of  */
-#wrap_41 { padding:8.0px 4px 36.0px; }
+#wrap_41 { padding:8px 4px 36px; height:64px; }
 #word_42 { width:76px; height:61px; background-position:-1008px -1894px; } /* as  */
-#wrap_42 { padding:11.0px 4px 36.0px; }
+#wrap_42 { padding:11px 4px 36px; height:61px; }
 #word_43 { width:161px; height:65px; background-position:-1122px -1890px; } /* "De  */
-#wrap_43 { padding:7.0px 4px 36.0px; }
+#wrap_43 { padding:7px 4px 36px; height:65px; }
 #word_44 { width:168px; height:66px; background-position:-1321px -1889px; } /* Vita  */
-#wrap_44 { padding:6.0px 4px 36.0px; }
+#wrap_44 { padding:6px 4px 36px; height:66px; }
 #word_45 { width:259px; height:66px; background-position:-1539px -1889px; } /* Christi  */
-#wrap_45 { padding:6.0px 4px 36.0px; }
+#wrap_45 { padding:6px 4px 36px; height:66px; }
 #word_46 { width:289px; height:66px; background-position:-1843px -1890px; } /* Medita- */
-#wrap_46 { padding:7.0px 4px 35.0px; }
+#wrap_46 { padding:7px 4px 35px; height:66px; }
 #word_47 { width:226px; height:64px; background-position:-298px -2002px; } /* tiones  */
-#wrap_47 { padding:10.0px 4px 34.0px; }
+#wrap_47 { padding:10px 4px 34px; height:64px; }
 #word_48 { width:29px; height:60px; background-position:-544px -2004px; } /* "  */
-#wrap_48 { padding:12.0px 4px 36.0px; }
+#wrap_48 { padding:12px 4px 36px; height:60px; }
 #word_49 { width:12px; height:58px; background-position:-599px -2020px; } /* ;  */
-#wrap_49 { padding:28.0px 4px 22.0px; }
+#wrap_49 { padding:28px 4px 22px; height:58px; }
 #word_50 { width:140px; height:63px; background-position:-655px -2001px; } /* and  */
-#wrap_50 { padding:9.0px 4px 36.0px; }
+#wrap_50 { padding:9px 4px 36px; height:63px; }
 #word_51 { width:74px; height:45px; background-position:-829px -2019px; } /* so  */
-#wrap_51 { padding:27.0px 4px 36.0px; }
+#wrap_51 { padding:27px 4px 36px; height:45px; }
 #word_52 { width:74px; height:61px; background-position:-938px -2003px; } /* at  */
-#wrap_52 { padding:11.0px 4px 36.0px; }
+#wrap_52 { padding:11px 4px 36px; height:61px; }
 #word_53 { width:120px; height:67px; background-position:-1046px -1997px; } /* the  */
-#wrap_53 { padding:5.0px 4px 36.0px; }
+#wrap_53 { padding:5px 4px 36px; height:67px; }
 #word_54 { width:342px; height:85px; background-position:-1197px -1997px; } /* headings  */
-#wrap_54 { padding:5.0px 4px 18.0px; }
+#wrap_54 { padding:5px 4px 18px; height:85px; }
 #word_55 { width:76px; height:65px; background-position:-1572px -1999px; } /* of  */
-#wrap_55 { padding:7.0px 4px 36.0px; }
+#wrap_55 { padding:7px 4px 36px; height:65px; }
 #word_56 { width:117px; height:66px; background-position:-1679px -1998px; } /* the  */
-#wrap_56 { padding:6.0px 4px 36.0px; }
+#wrap_56 { padding:6px 4px 36px; height:66px; }
 #word_57 { width:215px; height:64px; background-position:-1826px -2020px; } /* pages */
-#wrap_57 { padding:28.0px 4px 16.0px; }
+#wrap_57 { padding:28px 4px 16px; height:64px; }
 #word_58 { width:91px; height:9px; background-position:-2043px -2035px; } /* — */
-#wrap_58 { padding:43.0px 4px 56.0px; }
+#wrap_58 { padding:43px 4px 56px; height:9px; }
 #word_59 { width:93px; height:62px; background-position:-300px -2113px; } /* on  */
-#wrap_59 { padding:14.0px 4px 32.0px; }
+#wrap_59 { padding:14px 4px 32px; height:62px; }
 #word_60 { width:118px; height:65px; background-position:-424px -2108px; } /* the  */
-#wrap_60 { padding:9.0px 4px 34.0px; }
+#wrap_60 { padding:9px 4px 34px; height:65px; }
 #word_61 { width:131px; height:45px; background-position:-577px -2128px; } /* one  */
-#wrap_61 { padding:29.0px 4px 34.0px; }
+#wrap_61 { padding:29px 4px 34px; height:45px; }
 #word_62 { width:145px; height:66px; background-position:-742px -2106px; } /* side  */
-#wrap_62 { padding:7.0px 4px 35.0px; }
+#wrap_62 { padding:7px 4px 35px; height:66px; }
 #word_63 { width:103px; height:66px; background-position:-918px -2105px; } /* we  */
-#wrap_63 { padding:6.0px 4px 36.0px; }
+#wrap_63 { padding:6px 4px 36px; height:66px; }
 #word_64 { width:178px; height:66px; background-position:-1052px -2105px; } /* have  */
-#wrap_64 { padding:6.0px 4px 36.0px; }
+#wrap_64 { padding:6px 4px 36px; height:66px; }
 #word_65 { width:33px; height:65px; background-position:-1268px -2106px; } /* "  */
-#wrap_65 { padding:7.0px 4px 36.0px; }
+#wrap_65 { padding:7px 4px 36px; height:65px; }
 #word_66 { width:105px; height:65px; background-position:-1323px -2106px; } /* De  */
-#wrap_66 { padding:7.0px 4px 36.0px; }
+#wrap_66 { padding:7px 4px 36px; height:65px; }
 #word_67 { width:171px; height:66px; background-position:-1452px -2105px; } /* Vita  */
-#wrap_67 { padding:6.0px 4px 36.0px; }
+#wrap_67 { padding:6px 4px 36px; height:66px; }
 #word_68 { width:310px; height:85px; background-position:-1649px -2105px; } /* Christi/'  */
-#wrap_68 { padding:6.0px 4px 17.0px; }
+#wrap_68 { padding:6px 4px 17px; height:85px; }
 #word_69 { width:141px; height:64px; background-position:-1993px -2107px; } /* and */
-#wrap_69 { padding:8.0px 4px 36.0px; }
+#wrap_69 { padding:8px 4px 36px; height:64px; }
 #word_70 { width:93px; height:61px; background-position:-301px -2222px; } /* on  */
-#wrap_70 { padding:14.0px 4px 33.0px; }
+#wrap_70 { padding:14px 4px 33px; height:61px; }
 #word_71 { width:119px; height:66px; background-position:-424px -2216px; } /* the  */
-#wrap_71 { padding:8.0px 4px 34.0px; }
+#wrap_71 { padding:8px 4px 34px; height:66px; }
 #word_72 { width:214px; height:72px; background-position:-577px -2216px; } /* other,  */
-#wrap_72 { padding:8.0px 4px 28.0px; }
+#wrap_72 { padding:8px 4px 28px; height:72px; }
 #word_73 { width:33px; height:66px; background-position:-835px -2214px; } /* "  */
-#wrap_73 { padding:6.0px 4px 36.0px; }
+#wrap_73 { padding:6px 4px 36px; height:66px; }
 #word_74 { width:528px; height:67px; background-position:-894px -2213px; } /* Meditationes.' */
-#wrap_74 { padding:5.0px 4px 36.0px; }
+#wrap_74 { padding:5px 4px 36px; height:67px; }
 #word_75 { width:13px; height:31px; background-position:-1426px -2218px; } /* 7 */
-#wrap_75 { padding:10.0px 4px 67.0px; }
+#wrap_75 { padding:10px 4px 67px; height:31px; }
 #word_76 { width:25px; height:70px; background-position:-1462px -2214px; } /* 1  */
-#wrap_76 { padding:6.0px 4px 32.0px; }
+#wrap_76 { padding:6px 4px 32px; height:70px; }
 #word_77 { width:68px; height:66px; background-position:-1581px -2214px; } /* It  */
-#wrap_77 { padding:6.0px 4px 36.0px; }
+#wrap_77 { padding:6px 4px 36px; height:66px; }
 #word_78 { width:60px; height:66px; background-position:-1694px -2214px; } /* is  */
-#wrap_78 { padding:6.0px 4px 36.0px; }
+#wrap_78 { padding:6px 4px 36px; height:66px; }
 #word_79 { width:229px; height:66px; background-position:-1785px -2214px; } /* fonnd  */
-#wrap_79 { padding:6.0px 4px 36.0px; }
+#wrap_79 { padding:6px 4px 36px; height:66px; }
 #word_80 { width:76px; height:65px; background-position:-2058px -2214px; } /* in */
-#wrap_80 { padding:6.0px 4px 37.0px; }
+#wrap_80 { padding:6px 4px 37px; height:65px; }
 #word_81 { width:117px; height:65px; background-position:-299px -2326px; } /* the  */
-#wrap_81 { padding:11.0px 4px 32.0px; }
+#wrap_81 { padding:11px 4px 32px; height:65px; }
 #word_82 { width:256px; height:65px; background-position:-450px -2325px; } /* second  */
-#wrap_82 { padding:10.0px 4px 33.0px; }
+#wrap_82 { padding:10px 4px 33px; height:65px; }
 #word_83 { width:263px; height:65px; background-position:-737px -2323px; } /* edition  */
-#wrap_83 { padding:8.0px 4px 35.0px; }
+#wrap_83 { padding:8px 4px 35px; height:65px; }
 #word_84 { width:75px; height:65px; background-position:-1035px -2323px; } /* of  */
-#wrap_84 { padding:8.0px 4px 35.0px; }
+#wrap_84 { padding:8px 4px 35px; height:65px; }
 #word_85 { width:117px; height:66px; background-position:-1134px -2322px; } /* the  */
-#wrap_85 { padding:7.0px 4px 35.0px; }
+#wrap_85 { padding:7px 4px 35px; height:66px; }
 #word_86 { width:219px; height:65px; background-position:-1285px -2323px; } /* above  */
-#wrap_86 { padding:8.0px 4px 35.0px; }
+#wrap_86 { padding:8px 4px 35px; height:65px; }
 #word_87 { width:212px; height:65px; background-position:-1533px -2323px; } /* work.  */
-#wrap_87 { padding:8.0px 4px 35.0px; }
+#wrap_87 { padding:8px 4px 35px; height:65px; }
 #word_88 { width:68px; height:66px; background-position:-1840px -2323px; } /* It  */
-#wrap_88 { padding:8.0px 4px 34.0px; }
+#wrap_88 { padding:8px 4px 34px; height:66px; }
 #word_89 { width:194px; height:45px; background-position:-1941px -2344px; } /* occu- */
-#wrap_89 { padding:29.0px 4px 34.0px; }
+#wrap_89 { padding:29px 4px 34px; height:45px; }
 #word_90 { width:147px; height:85px; background-position:-299px -2433px; } /* pies  */
-#wrap_90 { padding:8.0px 4px 15.0px; }
+#wrap_90 { padding:8px 4px 15px; height:85px; }
 #word_91 { width:237px; height:65px; background-position:-477px -2432px; } /* rather  */
-#wrap_91 { padding:7.0px 4px 36.0px; }
+#wrap_91 { padding:7px 4px 36px; height:65px; }
 #word_92 { width:193px; height:61px; background-position:-744px -2436px; } /* more  */
-#wrap_92 { padding:11.0px 4px 36.0px; }
+#wrap_92 { padding:11px 4px 36px; height:61px; }
 #word_93 { width:173px; height:66px; background-position:-970px -2431px; } /* than  */
-#wrap_93 { padding:6.0px 4px 36.0px; }
+#wrap_93 { padding:6px 4px 36px; height:66px; }
 #word_94 { width:40px; height:66px; background-position:-1178px -2431px; } /* a  */
-#wrap_94 { padding:6.0px 4px 36.0px; }
+#wrap_94 { padding:6px 4px 36px; height:66px; }
 #word_95 { width:325px; height:66px; background-position:-1248px -2431px; } /* hundred  */
-#wrap_95 { padding:6.0px 4px 36.0px; }
+#wrap_95 { padding:6px 4px 36px; height:66px; }
 #word_96 { width:215px; height:64px; background-position:-1602px -2453px; } /* pages  */
-#wrap_96 { padding:28.0px 4px 16.0px; }
+#wrap_96 { padding:28px 4px 16px; height:64px; }
 #word_97 { width:172px; height:66px; background-position:-1839px -2432px; } /* with  */
-#wrap_97 { padding:7.0px 4px 35.0px; }
+#wrap_97 { padding:7px 4px 35px; height:66px; }
 #word_98 { width:91px; height:44px; background-position:-2045px -2453px; } /* an */
-#wrap_98 { padding:28.0px 4px 36.0px; }
+#wrap_98 { padding:28px 4px 36px; height:44px; }
 #word_99 { width:212px; height:65px; background-position:-299px -2542px; } /* index  */
-#wrap_99 { padding:9.0px 4px 34.0px; }
+#wrap_99 { padding:9px 4px 34px; height:65px; }
 #word_100 { width:71px; height:61px; background-position:-543px -2545px; } /* at  */
-#wrap_100 { padding:12.0px 4px 35.0px; }
+#wrap_100 { padding:12px 4px 35px; height:61px; }
 #word_101 { width:119px; height:66px; background-position:-660px -2540px; } /* the  */
-#wrap_101 { padding:7.0px 4px 35.0px; }
+#wrap_101 { padding:7px 4px 35px; height:66px; }
 #word_102 { width:137px; height:63px; background-position:-813px -2541px; } /* end */
-#wrap_102 { padding:8.0px 4px 37.0px; }
+#wrap_102 { padding:8px 4px 37px; height:63px; }
 #word_103 { width:12px; height:64px; background-position:-971px -2561px; } /* ;  */
-#wrap_103 { padding:28.0px 4px 16.0px; }
+#wrap_103 { padding:28px 4px 16px; height:64px; }
 #word_104 { width:141px; height:66px; background-position:-1042px -2539px; } /* and  */
-#wrap_104 { padding:6.0px 4px 36.0px; }
+#wrap_104 { padding:6px 4px 36px; height:66px; }
 #word_105 { width:59px; height:66px; background-position:-1230px -2539px; } /* is  */
-#wrap_105 { padding:6.0px 4px 36.0px; }
+#wrap_105 { padding:6px 4px 36px; height:66px; }
 #word_106 { width:247px; height:85px; background-position:-1321px -2540px; } /* placed  */
-#wrap_106 { padding:7.0px 4px 16.0px; }
+#wrap_106 { padding:7px 4px 16px; height:85px; }
 #word_107 { width:73px; height:59px; background-position:-1616px -2546px; } /* at  */
-#wrap_107 { padding:13.0px 4px 36.0px; }
+#wrap_107 { padding:13px 4px 36px; height:59px; }
 #word_108 { width:119px; height:66px; background-position:-1733px -2540px; } /* the  */
-#wrap_108 { padding:7.0px 4px 35.0px; }
+#wrap_108 { padding:7px 4px 35px; height:66px; }
 #word_109 { width:236px; height:88px; background-position:-1899px -2538px; } /* begin- */
-#wrap_109 { padding:5.0px 4px 15.0px; }
+#wrap_109 { padding:5px 4px 15px; height:88px; }
 #word_110 { width:26px; height:50px; background-position:-396px -2685px; } /* *  */
-#wrap_110 { padding:10.0px 4px 30.0px; }
+#wrap_110 { padding:10px 4px 30px; height:50px; }
 #word_111 { width:75px; height:52px; background-position:-452px -2684px; } /* 2d  */
-#wrap_111 { padding:9.0px 4px 29.0px; }
+#wrap_111 { padding:9px 4px 29px; height:52px; }
 #word_112 { width:129px; height:68px; background-position:-551px -2683px; } /* Ed.,  */
-#wrap_112 { padding:8.0px 4px 14.0px; }
+#wrap_112 { padding:8px 4px 14px; height:68px; }
 #word_113 { width:303px; height:67px; background-position:-715px -2683px; } /* Antwerp,  */
-#wrap_113 { padding:8.0px 4px 15.0px; }
+#wrap_113 { padding:8px 4px 15px; height:67px; }
 #word_114 { width:154px; height:65px; background-position:-1057px -2685px; } /* 1607,  */
-#wrap_114 { padding:10.0px 4px 15.0px; }
+#wrap_114 { padding:10px 4px 15px; height:65px; }
 #word_115 { width:171px; height:52px; background-position:-1250px -2684px; } /* small  */
-#wrap_115 { padding:9.0px 4px 29.0px; }
+#wrap_115 { padding:9px 4px 29px; height:52px; }
 #word_116 { width:114px; height:52px; background-position:-1449px -2685px; } /* 4to. */
-#wrap_116 { padding:10.0px 4px 28.0px; }
+#wrap_116 { padding:10px 4px 28px; height:52px; }
 #word_117 { width:22px; height:53px; background-position:-393px -2775px; } /* t  */
-#wrap_117 { padding:11.0px 4px 26.0px; }
+#wrap_117 { padding:11px 4px 26px; height:53px; }
 #word_118 { width:183px; height:53px; background-position:-446px -2774px; } /* Other  */
-#wrap_118 { padding:10.0px 4px 27.0px; }
+#wrap_118 { padding:10px 4px 27px; height:53px; }
 #word_119 { width:165px; height:52px; background-position:-655px -2774px; } /* titles  */
-#wrap_119 { padding:10.0px 4px 28.0px; }
+#wrap_119 { padding:10px 4px 28px; height:52px; }
 #word_120 { width:99px; height:37px; background-position:-850px -2789px; } /* are  */
-#wrap_120 { padding:25.0px 4px 28.0px; }
+#wrap_120 { padding:25px 4px 28px; height:37px; }
 #word_121 { width:194px; height:67px; background-position:-978px -2774px; } /* given,  */
-#wrap_121 { padding:10.0px 4px 13.0px; }
+#wrap_121 { padding:10px 4px 13px; height:67px; }
 #word_122 { width:113px; height:52px; background-position:-1209px -2774px; } /* viz.  */
-#wrap_122 { padding:10.0px 4px 28.0px; }
+#wrap_122 { padding:10px 4px 28px; height:52px; }
 #word_123 { width:11px; height:33px; background-position:-1351px -2792px; } /* : */
-#wrap_123 { padding:28.0px 4px 29.0px; }
+#wrap_123 { padding:28px 4px 29px; height:33px; }
 #word_124 { width:72px; height:6px; background-position:-1368px -2804px; } /* — */
-#wrap_124 { padding:40.0px 4px 44.0px; }
+#wrap_124 { padding:40px 4px 44px; height:6px; }
 #word_125 { width:48px; height:49px; background-position:-521px -2867px; } /* 1. */
-#wrap_125 { padding:11.0px 4px 30.0px; }
+#wrap_125 { padding:11px 4px 30px; height:49px; }
 #word_126 { width:-569px; height:50px; background-position:-569px -2866px; } /*   */
-#wrap_126 { padding:10.0px 4px 30.0px; }
+#wrap_126 { padding:10px 4px 30px; height:50px; }
 #word_127 { width:231px; height:52px; background-position:-621px -2864px; } /* "Liber  */
-#wrap_127 { padding:8.0px 4px 30.0px; }
+#wrap_127 { padding:8px 4px 30px; height:52px; }
 #word_128 { width:352px; height:52px; background-position:-881px -2864px; } /* Orationum  */
-#wrap_128 { padding:8.0px 4px 30.0px; }
+#wrap_128 { padding:8px 4px 30px; height:52px; }
 #word_129 { width:87px; height:53px; background-position:-1264px -2864px; } /* De  */
-#wrap_129 { padding:8.0px 4px 29.0px; }
+#wrap_129 { padding:8px 4px 29px; height:53px; }
 #word_130 { width:144px; height:52px; background-position:-1383px -2864px; } /* Vita  */
-#wrap_130 { padding:8.0px 4px 30.0px; }
+#wrap_130 { padding:8px 4px 30px; height:52px; }
 #word_131 { width:287px; height:53px; background-position:-1555px -2864px; } /* Domini" */
-#wrap_131 { padding:8.0px 4px 29.0px; }
+#wrap_131 { padding:8px 4px 29px; height:53px; }
 #word_132 { width:12px; height:53px; background-position:-1865px -2864px; } /* :  */
-#wrap_132 { padding:8.0px 4px 29.0px; }
+#wrap_132 { padding:8px 4px 29px; height:53px; }
 #word_133 { width:123px; height:53px; background-position:-1917px -2864px; } /* MS.  */
-#wrap_133 { padding:8.0px 4px 29.0px; }
+#wrap_133 { padding:8px 4px 29px; height:53px; }
 #word_134 { width:63px; height:52px; background-position:-2075px -2865px; } /* of */
-#wrap_134 { padding:9.0px 4px 29.0px; }
+#wrap_134 { padding:9px 4px 29px; height:52px; }
 #word_135 { width:466px; height:68px; background-position:-754px -2953px; } /* Contemporary  */
-#wrap_135 { padding:6.0px 4px 16.0px; }
+#wrap_135 { padding:6px 4px 16px; height:68px; }
 #word_136 { width:380px; height:68px; background-position:-1237px -2954px; } /* Biographer,  */
-#wrap_136 { padding:7.0px 4px 15.0px; }
+#wrap_136 { padding:7px 4px 15px; height:68px; }
 #word_137 { width:118px; height:52px; background-position:-1644px -2955px; } /* and  */
-#wrap_137 { padding:8.0px 4px 30.0px; }
+#wrap_137 { padding:8px 4px 30px; height:52px; }
 #word_138 { width:115px; height:53px; background-position:-1781px -2955px; } /* end  */
-#wrap_138 { padding:8.0px 4px 29.0px; }
+#wrap_138 { padding:8px 4px 29px; height:53px; }
 #word_139 { width:61px; height:51px; background-position:-1918px -2956px; } /* of  */
-#wrap_139 { padding:9.0px 4px 30.0px; }
+#wrap_139 { padding:9px 4px 30px; height:51px; }
 #word_140 { width:138px; height:54px; background-position:-2000px -2954px; } /* 15th */
-#wrap_140 { padding:7.0px 4px 29.0px; }
+#wrap_140 { padding:7px 4px 29px; height:54px; }
 #word_141 { width:277px; height:68px; background-position:-756px -3043px; } /* Century. */
-#wrap_141 { padding:8.0px 4px 14.0px; }
+#wrap_141 { padding:8px 4px 14px; height:68px; }
 #word_142 { width:48px; height:50px; background-position:-522px -3136px; } /* 2. */
-#wrap_142 { padding:9.0px 4px 31.0px; }
+#wrap_142 { padding:9px 4px 31px; height:50px; }
 #word_143 { width:-570px; height:52px; background-position:-570px -3135px; } /*   */
-#wrap_143 { padding:8.0px 4px 30.0px; }
+#wrap_143 { padding:8px 4px 30px; height:52px; }
 #word_144 { width:31px; height:53px; background-position:-622px -3134px; } /* "  */
-#wrap_144 { padding:7.0px 4px 30.0px; }
+#wrap_144 { padding:7px 4px 30px; height:53px; }
 #word_145 { width:423px; height:53px; background-position:-671px -3134px; } /* Meditationes  */
-#wrap_145 { padding:7.0px 4px 30.0px; }
+#wrap_145 { padding:7px 4px 30px; height:53px; }
 #word_146 { width:65px; height:53px; background-position:-1140px -3134px; } /* in  */
-#wrap_146 { padding:7.0px 4px 30.0px; }
+#wrap_146 { padding:7px 4px 30px; height:53px; }
 #word_147 { width:204px; height:53px; background-position:-1241px -3134px; } /* Vitam  */
-#wrap_147 { padding:7.0px 4px 30.0px; }
+#wrap_147 { padding:7px 4px 30px; height:53px; }
 #word_148 { width:218px; height:52px; background-position:-1482px -3135px; } /* Christi */
-#wrap_148 { padding:8.0px 4px 30.0px; }
+#wrap_148 { padding:8px 4px 30px; height:52px; }
 #word_149 { width:29px; height:29px; background-position:-1719px -3135px; } /* " */
-#wrap_149 { padding:8.0px 4px 53.0px; }
+#wrap_149 { padding:8px 4px 53px; height:29px; }
 #word_150 { width:51px; height:48px; background-position:-1771px -3139px; } /* :    */
-#wrap_150 { padding:12.0px 4px 30.0px; }
+#wrap_150 { padding:12px 4px 30px; height:48px; }
 #word_151 { width:101px; height:53px; background-position:-1842px -3134px; } /* the  */
-#wrap_151 { padding:7.0px 4px 30.0px; }
+#wrap_151 { padding:7px 4px 30px; height:53px; }
 #word_152 { width:153px; height:52px; background-position:-1983px -3134px; } /* Bux- */
-#wrap_152 { padding:7.0px 4px 31.0px; }
+#wrap_152 { padding:7px 4px 31px; height:52px; }
 #word_153 { width:163px; height:53px; background-position:-754px -3223px; } /* heim  */
-#wrap_153 { padding:7.0px 4px 30.0px; }
+#wrap_153 { padding:7px 4px 30px; height:53px; }
 #word_154 { width:124px; height:53px; background-position:-942px -3224px; } /* MS. */
-#wrap_154 { padding:8.0px 4px 29.0px; }
+#wrap_154 { padding:8px 4px 29px; height:53px; }
 #word_155 { width:50px; height:49px; background-position:-522px -3316px; } /* 3. */
-#wrap_155 { padding:9.0px 4px 32.0px; }
+#wrap_155 { padding:9px 4px 32px; height:49px; }
 #word_156 { width:-572px; height:52px; background-position:-572px -3315px; } /*   */
-#wrap_156 { padding:8.0px 4px 30.0px; }
+#wrap_156 { padding:8px 4px 30px; height:52px; }
 #word_157 { width:364px; height:53px; background-position:-628px -3314px; } /* "Orationes  */
-#wrap_157 { padding:7.0px 4px 30.0px; }
+#wrap_157 { padding:7px 4px 30px; height:53px; }
 #word_158 { width:65px; height:53px; background-position:-1033px -3314px; } /* in  */
-#wrap_158 { padding:7.0px 4px 30.0px; }
+#wrap_158 { padding:7px 4px 30px; height:53px; }
 #word_159 { width:214px; height:54px; background-position:-1142px -3313px; } /* Totam  */
-#wrap_159 { padding:6.0px 4px 30.0px; }
+#wrap_159 { padding:6px 4px 30px; height:54px; }
 #word_160 { width:204px; height:54px; background-position:-1388px -3313px; } /* Vitam  */
-#wrap_160 { padding:6.0px 4px 30.0px; }
+#wrap_160 { padding:6px 4px 30px; height:54px; }
 #word_161 { width:219px; height:53px; background-position:-1624px -3314px; } /* Christi */
-#wrap_161 { padding:7.0px 4px 30.0px; }
+#wrap_161 { padding:7px 4px 30px; height:53px; }
 #word_162 { width:29px; height:27px; background-position:-1861px -3315px; } /* " */
-#wrap_162 { padding:8.0px 4px 55.0px; }
+#wrap_162 { padding:8px 4px 55px; height:27px; }
 #word_163 { width:13px; height:51px; background-position:-1913px -3316px; } /* :  */
-#wrap_163 { padding:9.0px 4px 30.0px; }
+#wrap_163 { padding:9px 4px 30px; height:51px; }
 #word_164 { width:155px; height:66px; background-position:-1975px -3315px; } /* 1626, */
-#wrap_164 { padding:8.0px 4px 16.0px; }
+#wrap_164 { padding:8px 4px 16px; height:66px; }
 #word_165 { width:275px; height:68px; background-position:-759px -3403px; } /* Cologne. */
-#wrap_165 { padding:7.0px 4px 15.0px; }
+#wrap_165 { padding:7px 4px 15px; height:68px; }
 #word_166 { width:51px; height:50px; background-position:-522px -3495px; } /* 4. */
-#wrap_166 { padding:9.0px 4px 31.0px; }
+#wrap_166 { padding:9px 4px 31px; height:50px; }
 #word_167 { width:-573px; height:53px; background-position:-573px -3493px; } /*   */
-#wrap_167 { padding:7.0px 4px 30.0px; }
+#wrap_167 { padding:7px 4px 30px; height:53px; }
 #word_168 { width:32px; height:53px; background-position:-626px -3493px; } /* "  */
-#wrap_168 { padding:7.0px 4px 30.0px; }
+#wrap_168 { padding:7px 4px 30px; height:53px; }
 #word_169 { width:318px; height:53px; background-position:-676px -3493px; } /* Oraciones  */
-#wrap_169 { padding:7.0px 4px 30.0px; }
+#wrap_169 { padding:7px 4px 30px; height:53px; }
 #word_170 { width:40px; height:67px; background-position:-1021px -3493px; } /* y  */
-#wrap_170 { padding:7.0px 4px 16.0px; }
+#wrap_170 { padding:7px 4px 16px; height:67px; }
 #word_171 { width:431px; height:54px; background-position:-1086px -3493px; } /* Meditaciones  */
-#wrap_171 { padding:7.0px 4px 29.0px; }
+#wrap_171 { padding:7px 4px 29px; height:54px; }
 #word_172 { width:70px; height:52px; background-position:-1540px -3495px; } /* de  */
-#wrap_172 { padding:9.0px 4px 29.0px; }
+#wrap_172 { padding:9px 4px 29px; height:52px; }
 #word_173 { width:57px; height:52px; background-position:-1632px -3495px; } /* la  */
-#wrap_173 { padding:9.0px 4px 29.0px; }
+#wrap_173 { padding:9px 4px 29px; height:52px; }
 #word_174 { width:156px; height:52px; background-position:-1709px -3495px; } /* Vida  */
-#wrap_174 { padding:9.0px 4px 29.0px; }
+#wrap_174 { padding:9px 4px 29px; height:52px; }
 #word_175 { width:69px; height:52px; background-position:-1893px -3494px; } /* de  */
-#wrap_175 { padding:8.0px 4px 30.0px; }
+#wrap_175 { padding:8px 4px 30px; height:52px; }
 #word_176 { width:147px; height:52px; background-position:-1992px -3494px; } /* Jesu */
-#wrap_176 { padding:8.0px 4px 30.0px; }
+#wrap_176 { padding:8px 4px 30px; height:52px; }
 #word_177 { width:249px; height:68px; background-position:-760px -3582px; } /* Christo,  */
-#wrap_177 { padding:7.0px 4px 15.0px; }
+#wrap_177 { padding:7px 4px 15px; height:68px; }
 #word_178 { width:251px; height:51px; background-position:-1057px -3584px; } /* N.S.":    */
-#wrap_178 { padding:9.0px 4px 30.0px; }
+#wrap_178 { padding:9px 4px 30px; height:51px; }
 #word_179 { width:156px; height:67px; background-position:-1328px -3584px; } /* 1661,  */
-#wrap_179 { padding:9.0px 4px 14.0px; }
+#wrap_179 { padding:9px 4px 14px; height:67px; }
 #word_180 { width:350px; height:53px; background-position:-1530px -3584px; } /* Brussels.     */
-#wrap_180 { padding:9.0px 4px 28.0px; }
+#wrap_180 { padding:9px 4px 28px; height:53px; }
 #word_181 { width:118px; height:51px; background-position:-1901px -3584px; } /* But  */
-#wrap_181 { padding:9.0px 4px 30.0px; }
+#wrap_181 { padding:9px 4px 30px; height:51px; }
 #word_182 { width:80px; height:52px; background-position:-2058px -3583px; } /* all */
-#wrap_182 { padding:8.0px 4px 30.0px; }
+#wrap_182 { padding:8px 4px 30px; height:52px; }
 #word_183 { width:160px; height:52px; background-position:-758px -3674px; } /* refer  */
-#wrap_183 { padding:9.0px 4px 29.0px; }
+#wrap_183 { padding:9px 4px 29px; height:52px; }
 #word_184 { width:61px; height:49px; background-position:-944px -3676px; } /* to  */
-#wrap_184 { padding:11.0px 4px 30.0px; }
+#wrap_184 { padding:11px 4px 30px; height:49px; }
 #word_185 { width:109px; height:36px; background-position:-1036px -3690px; } /* one  */
-#wrap_185 { padding:25.0px 4px 29.0px; }
+#wrap_185 { padding:25px 4px 29px; height:36px; }
 #word_186 { width:119px; height:53px; background-position:-1175px -3673px; } /* and  */
-#wrap_186 { padding:8.0px 4px 29.0px; }
+#wrap_186 { padding:8px 4px 29px; height:53px; }
 #word_187 { width:101px; height:52px; background-position:-1320px -3674px; } /* the  */
-#wrap_187 { padding:9.0px 4px 29.0px; }
+#wrap_187 { padding:9px 4px 29px; height:52px; }
 #word_188 { width:160px; height:49px; background-position:-1451px -3677px; } /* same  */
-#wrap_188 { padding:12.0px 4px 29.0px; }
+#wrap_188 { padding:12px 4px 29px; height:49px; }
 #word_189 { width:263px; height:52px; background-position:-1640px -3674px; } /* treatise. */
-#wrap_189 { padding:9.0px 4px 29.0px; }
+#wrap_189 { padding:9px 4px 29px; height:52px; }
