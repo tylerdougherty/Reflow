@@ -30,61 +30,62 @@ class ABBYYFile < Nokogiri::XML::SAX::Document
         attributes = attributes.to_h # The info in the tag
 
         case tag
-            when 'page'
-                $thml.puts "<page title=\"Page #{@page_num}\" id=\"page_#{@page_num}\">"
-                @page_num += 1
-            when 'block'
-                $thml.puts "<block id=\"block_#{@block_num}\" class=\"#{attributes['blockType']}\">"
-                @block_num += 1
-            when 'par'
-                $thml.puts "<p id=\"p_#{@par_num}\">"
-                @par_num += 1
-                @line_spacing = attributes.has_key?('lineSpacing') ? attributes['lineSpacing'].to_i : 0
-            when 'line'
-                @baseline = attributes['baseline'].to_i
-            when 'formatting'
-                $thml.puts '<span>' #\n<br/>"
+        when 'page'
+            $thml.puts "<page title=\"Page #{@page_num}\" id=\"page_#{@page_num}\">"
+            @page_num += 1
+        when 'block'
+            $thml.puts "<block id=\"block_#{@block_num}\" class=\"#{attributes['blockType']}\">"
+            @block_num += 1
+        when 'par'
+            $thml.puts "<p id=\"p_#{@par_num}\">"
+            @par_num += 1
+            @line_spacing = attributes.has_key?('lineSpacing') ? attributes['lineSpacing'].to_i : 0
+        when 'line'
+            @baseline = attributes['baseline'].to_i
+        when 'formatting'
+            $thml.puts '<span>' #\n<br/>"
             # puts currentWord
-            when 'charParams'
-                if attributes['wordStart'] == 'true'
-                    if @current_word != ''
-                        print_word
-                    end
-                    # $thml.print "<word>"
+        when 'charParams'
+            if attributes['wordStart'] == 'true'
+                if @current_word != ''
+                    print_word
                 end
-                @rx = @right
-                @left = attributes['l'].to_i < @left ? attributes['l'].to_i : @left
-                @right = attributes['r'].to_i > @right ? attributes['r'].to_i : @right
-                @top = attributes['t'].to_i < @top ? attributes['t'].to_i : @top
-                @bot = attributes['b'].to_i > @bot ? attributes['b'].to_i : @bot
-                @adding_chars = true # the characters function picks up all whitespace in the file otherwise
-                @has_added_chars = false # Figures out if this charParam is a space
-            else
-                # don't do anything
+                # $thml.print "<word>"
+            end
+            @rx = @right
+            @left = attributes['l'].to_i < @left ? attributes['l'].to_i : @left
+            @right = attributes['r'].to_i > @right ? attributes['r'].to_i : @right
+            @top = attributes['t'].to_i < @top ? attributes['t'].to_i : @top
+            @bot = attributes['b'].to_i > @bot ? attributes['b'].to_i : @bot
+            @adding_chars = true # the characters function picks up all whitespace in the file otherwise
+            @has_added_chars = false # Figures out if this charParam is a space
+        else
+            # don't do anything
         end
 
         @current_indent += 1
     end
 
     def end_element(tag)
-
-
-        if tag == 'page'
+        case tag
+        when 'page'
             $thml.puts '</page>'
-        elsif tag == 'block'
+        when 'block'
             $thml.puts '</block>'
-        elsif tag == 'par'
+        when 'par'
             $thml.puts '</p>'
-        elsif tag == 'formatting'
+        when 'formatting'
             if @current_word != ''
                 print_word
             end
             $thml.puts '</span>'
-        elsif tag == 'charParams'
+        when 'charParams'
             @adding_chars = false
             unless @has_added_chars
                 @current_word += ' '
             end
+        else
+            # don't do anything
         end
 
         @current_indent -= 1
