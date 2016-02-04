@@ -27,7 +27,7 @@
         <rect b="3732" l="284" r="2156" t="1328"/>
       </region>
       <text>
-        <par align="Justify" dropCap-b="1511" dropCap-l="303" dropCap-r="456" dropCap-t="1348" dropCapCharsCount="1" lineSpacing="108" rightIndent="3">
+        <par align="Justified" dropCap-b="1511" dropCap-l="303" dropCap-r="456" dropCap-t="1348" dropCapCharsCount="1" lineSpacing="108" rightIndent="3">
           <line b="1434" baseline="1413" l="467" r="2132" t="1345">
             <formatting ff="Times New Roman" fs="13." lang="EnglishUnitedStates">
               <charParams b="1511" charConfidence="100" l="303" meanStrokeWidth="92" r="456" serifProbability="255" t="1348" wordFromDictionary="true" wordIdentifier="false" wordNormal="true" wordNumeric="false" wordPenalty="0" wordStart="true">T</charParams>
