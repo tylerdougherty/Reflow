@@ -1,3 +1,15 @@
 <h1>Welcome to Reflow</h1>
 <p>A Library of Books</p>
 
+<table border="1">
+  <tr>
+    <td>Title</td>
+    <td>Author</td>
+  </tr>
+  <% @books.each do |book| %>
+  <tr>
+    <td><%= book.title %></td>
+    <td><%= book.author %></td>
+  </tr>
+  <% end %>
+</table>
