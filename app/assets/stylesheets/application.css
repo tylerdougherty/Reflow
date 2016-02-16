@@ -29,6 +29,10 @@
     border-radius: 0;
 }
 
+.results {
+    padding: 10px;
+}
+
 table.center {
     margin: 0 auto;
 }
