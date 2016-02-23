@@ -3,9 +3,37 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .btn {
-  float: right;
+    float: right;
 }
 
 .search {
-  overflow: hidden;
+    overflow: hidden;
+}
+
+.search-result {
+    background: lightgoldenrodyellow;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px;
+    height: 80px;
+    overflow: hidden;
+}
+
+.nopad {
+    margin: 0;
+}
+
+.left {
+    float: left;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 100%;
+    text-align: left;
+    width: 250px;
+    overflow: hidden;
+}
+
+.right {
+    height: 100%;
+    text-align: left;
 }

@@ -1,20 +1,28 @@
-<h1>Archive.org Search</h1>
+<h1><b>Archive.org Search</b></h1>
 <!--<p>Try searching: https://archive.org/metadata/mobydickorwhale01melvuoft</p>-->
 
 <%= form_tag('/archive/example', method: 'get') do %>
     <button type="submit" class="btn btn-success">Submit</button>
     <div class="search">
-      <%= text_field_tag(:search, params[:search], placeholder: 'Search Internet Archive', class: 'form-control') %>
+        <%= text_field_tag(:search, params[:search], placeholder: 'Search Internet Archive', class: 'form-control') %>
     </div>
 <% end %>
 
 <% if @json %>
     <div class="results">
-      <%= simple_format "<i>#{@results} search results returned</i>" %>
+        <%= simple_format "<i>#{@results} search results returned</i>" %>
 
-      <br />
-      <% @docs.each do |doc| %>
-        <%= simple_format "#{doc['title']} : #{doc['format']}" %>
-      <% end %>
+        <br/>
+        <% @docs.each do |doc| %>
+            <div class="search-result">
+                <div class="left">
+                    <%= simple_format "<b>#{doc['downloads']}</b> downloads", {class:'nopad'} %>
+                    <%= simple_format "#{doc['identifier']}", {class:'nopad'} %>
+                </div>
+                <div class="right">
+                    <%= simple_format "#{doc['title']}", {class:'nopad'}, wrapper_tag: 'h4' %>
+                </div>
+            </div>
+        <% end %>
     </div>
 <% end %>
