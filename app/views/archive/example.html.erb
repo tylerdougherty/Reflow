@@ -1,5 +1,5 @@
 <h1>Archive.org Search</h1>
-<p>Try searching: https://archive.org/metadata/mobydickorwhale01melvuoft</p>
+<!--<p>Try searching: https://archive.org/metadata/mobydickorwhale01melvuoft</p>-->
 
 <%= form_tag('/archive/example', method: 'get') do %>
     <%= text_field_tag(:search, params[:search], placeholder: 'Search Internet Archive') %>
@@ -8,12 +8,11 @@
 
 <% if @json %>
     <div class="results">
-      <%= simple_format(@json['metadata']['title'], {}, wrapper_tag:'h1') %>
-      <%= simple_format(@json['metadata']['creator'], {}, wrapper_tag:'h4') %>
+      <%= simple_format "<i>#{@results} search results returned</i>" %>
 
       <br />
-      <% @json['files'].each do |file| %>
-        <%= simple_format "#{file['name']} : #{file['format']}" %>
+      <% @docs.each do |doc| %>
+        <%= simple_format "#{doc['title']} : #{doc['format']}" %>
       <% end %>
     </div>
 <% end %>
