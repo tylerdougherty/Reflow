@@ -2,8 +2,10 @@
 <p>Try searching: https://archive.org/metadata/mobydickorwhale01melvuoft</p>
 
 <%= form_tag('/archive/example', method: 'get') do %>
-    <%= text_field_tag(:search, params[:search], placeholder: 'Search Internet Archive') %>
-    <%= submit_tag('Search') %>
+    <button type="submit" class="btn btn-success">Submit</button>
+    <div class="search">
+      <%= text_field_tag(:search, params[:search], placeholder: 'Search Internet Archive', class: 'form-control') %>
+    </div>
 <% end %>
 
 <% if @json %>
