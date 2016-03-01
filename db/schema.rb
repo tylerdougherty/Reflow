@@ -21,6 +21,9 @@ ActiveRecord::Schema.define(version: 20160204024350) do
   create_table "pages", force: :cascade do |t|
     t.integer "number"
     t.string  "text"
+    t.integer "book_id"
   end
+
+  add_index "pages", ["book_id"], name: "index_pages_on_book_id"
 
 end
