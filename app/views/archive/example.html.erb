@@ -13,7 +13,7 @@
         <%= simple_format "<i>#{@results} search results returned</i>" %>
 
         <ul class="pager">
-            <% if @has_prev %><li class="previous"><%= link_to 'Next', params.merge(:page => @page-1) %></li><% end %>
+            <% if @has_prev %><li class="previous"><%= link_to 'Previous', params.merge(:page => @page-1) %></li><% end %>
             <!-- TODO: add actual page number buttons here -->
             <% if @has_next %><li class="next"><%= link_to 'Next', params.merge(:page => @page+1) %></li><% end %>
         </ul>
