@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
     get 'archive' => 'archive#example'
     get 'archive/search' => 'archive#search'
+    get 'archive/download' => 'archive#download'
 
     # Example of regular route:
     #   get 'products/:id' => 'catalog#view'
