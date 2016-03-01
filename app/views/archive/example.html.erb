@@ -12,12 +12,17 @@
     <div class="results">
         <%= simple_format "<i>#{@results} search results returned</i>" %>
 
+        <ul class="pager">
+            <li class="previous"><a href="#">Previous</a></li>
+            <li class="next"><a href="#">Next</a></li>
+        </ul>
+
         <br/>
         <% @docs.each do |doc| %>
             <div class="search-result">
                 <div class="left">
                     <%= simple_format "<b>#{doc['downloads']}</b> downloads", {class:'nopad'} %>
-                    <%= simple_format "#{doc['identifier']}", {class:'nopad'} %>
+                    <%= link_to "#{doc['identifier']}", "https://archive.org/details/#{doc['identifier']}", {class:'nopad'} %>
                 </div>
                 <div class="right">
                     <%= simple_format "#{doc['title']}", {class:'nopad'}, wrapper_tag: 'h4' %>
