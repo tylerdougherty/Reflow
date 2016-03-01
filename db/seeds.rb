@@ -9,3 +9,7 @@
 Book.create!( :title => 'Moby Dick' , :author => 'Herman Melville' )
 Book.create!( :title => 'Gettysburg Address' , :author => 'Abraham Lincoln' )
 #Book.create!( :title => 'The Lord of the Rings: The Fellowship of the Ring' , :author => 'J.R.R. Tolkien' )
+
+Page.create!( :number => '1' , :text => 'Finally after so much time' , :book_id => 1)
+Page.create!( :number => '2' , :text => 'Thank the Lord' , :book_id => 1)
+Page.create!( :number => '1' , :text => 'Thank the Lord' , :book_id => 2)

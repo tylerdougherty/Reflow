@@ -11,7 +11,7 @@
         <tr>
           <td><%= book.title %></td>
           <td><%= book.author %></td>
-          <!--<td><%= link_to('Read', 'text') %></td>-->
+          <td><%= link_to('Read', "#{book['id']}") %></td>
         </tr>
     <% end %>
   </table>
