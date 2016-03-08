@@ -11,6 +11,7 @@ class ArchiveController < ApplicationController
             page_size = 50
 
             search_url = 'https://archive.org/advancedsearch.php'
+            # TODO: escape search query
             query = "q=\"title:\"#{params[:search]}\" mediatype:\"texts\"\""
             requested_info = 'fl[]=downloads,format,identifier,title'
             output = 'output=\"json\"'
