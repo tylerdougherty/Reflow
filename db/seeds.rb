@@ -12,4 +12,4 @@ Book.create!( :title => 'Gettysburg Address' , :author => 'Abraham Lincoln' )
 
 Page.create!( :number => '1' , :text => 'Finally after so much time' , :book_id => 1)
 Page.create!( :number => '2' , :text => 'Thank the Lord' , :book_id => 1)
-Page.create!( :number => '1' , :text => 'Thank the Lord' , :book_id => 2)
+Page.create!( :number => '1' , :text => 'Book 2 Text' , :book_id => 2)

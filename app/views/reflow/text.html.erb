@@ -1,7 +1,14 @@
 <div class="c1">
-    <% @pages.each do |page| %>
+
+    <ul class="pager">
+        <% if @hasPrevious %><li class="previous"><%= link_to 'Previous', params.merge(:page => @pageNum-1) %></li><% end %>
+        <!-- TODO: add actual page number buttons here -->
+        <% if @hasNext %><li class="next"><%= link_to 'Next', params.merge(:page => @pageNum+1) %></li><% end %>
+    </ul>
+
+
         <p>
-            <%= page.text %>
+            <%= @currentPage.text %>
         </p>
-    <% end %>
+
 </div>
