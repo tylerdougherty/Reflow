@@ -24,11 +24,8 @@ module ArchiveHelper
 
         puts '--> unzipping file'
         Zip::File.open(source) do |zip_file|
-            # Handle entries one by one
             zip_file.each do |entry|
-                File.open("#{dest}/#{entry.name}") do |output|
-                    entry.extract(output)
-                end
+                entry.extract("#{dest}/#{entry.name}")
             end
         end
         puts '--> unzipped file'
@@ -47,26 +44,23 @@ module ArchiveHelper
     end
 
     def download_archive_entry(id)
-        # Thread.new(id) do |id|
-        download_url = 'https://archive.org/download'
+        Thread.new(id) do |id|
+            download_url = 'https://archive.org/download'
 
-        puts '--> downloading abbyy file'
-        d1 = download_file_async "#{download_url}/#{id}/#{id}_abbyy.gz", Rails.root.join('data', 'books', "#{id}", "#{id}.abbyy.gz").to_s
+            puts '--> downloading abbyy file'
+            d1 = download_file_async "#{download_url}/#{id}/#{id}_abbyy.gz", Rails.root.join('data', 'books', "#{id}", "#{id}.abbyy.gz").to_s
 
-        puts '--> downloading page images'
-        # d2 = download_file_async "#{download_url}/#{id}/#{id}_jp2.zip", Rails.root.join('data', 'books', "#{id}", "#{id}_jp2.zip").to_s
+            puts '--> downloading page images'
+            d2 = download_file_async "#{download_url}/#{id}/#{id}_jp2.zip", Rails.root.join('data', 'books', "#{id}", "#{id}_jp2.zip").to_s
 
-        d1.join
-        # d2.join
-        puts '--> downloaded abbyy file'
-        puts '--> downloaded page images'
+            d1.join
+            d2.join
+            puts '--> downloaded abbyy file'
+            puts '--> downloaded page images'
 
-        ungzip Rails.root.join('data', 'books', "#{id}", "#{id}.abbyy.gz").to_s, Rails.root.join('data', 'books', "#{id}", "#{id}.abbyy").to_s
-        # unzip Rails.root.join('data', 'books', "#{id}", "#{id}_jp2.zip").to_s, Rails.root.join('data', 'books', "#{id}").to_s
-
-        # download_file "#{download_url}/#{id}/#{id}_jp2.zip", Rails.root.join('data', 'books', "#{id}", "#{id}.jp2.zip").to_s
-        #unzip zip
-        # end
+            ungzip Rails.root.join('data', 'books', "#{id}", "#{id}.abbyy.gz").to_s, Rails.root.join('data', 'books', "#{id}", "#{id}.abbyy").to_s
+            unzip Rails.root.join('data', 'books', "#{id}", "#{id}_jp2.zip").to_s, Rails.root.join('data', 'books', "#{id}").to_s
+        end
     end
 
     def get_json_response(url)
