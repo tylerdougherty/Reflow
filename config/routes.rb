@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     # You can have the root of your site routed with "root"
     root 'reflow#index'
 
-    get ':id' => 'reflow#text'
+    get 'read/:id' => 'reflow#text'
 
     get 'archive' => 'archive#example'
     get 'archive/search' => 'archive#search'
