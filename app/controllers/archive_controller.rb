@@ -11,6 +11,7 @@ class ArchiveController < ApplicationController
             page_size = 50
 
             search_url = 'https://archive.org/advancedsearch.php'
+            # TODO: escape search query
             query = "q=\"title:\"#{params[:search]}\" mediatype:\"texts\"\""
             requested_info = 'fl[]=downloads,format,identifier,title'
             output = 'output=\"json\"'
@@ -19,8 +20,8 @@ class ArchiveController < ApplicationController
             page = "page=#{@page}"
             @json = get_json_response "#{search_url}?#{query}&#{requested_info}&#{output}&#{sort}&#{rows}&#{page}"
 
-            @results = @json['response']['numFound']
             @docs = @json['response']['docs'].select { |doc| doc['format'].map{|it| it.downcase.include? 'abbyy'}.include? true } # only take results with Abbyy results
+            @results = @docs.count
             @has_next = @results > @page*page_size
             @has_prev = @page > 1
         else
