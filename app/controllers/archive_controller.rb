@@ -6,7 +6,7 @@ class ArchiveController < ApplicationController
 
     skip_before_action :verify_authenticity_token, only: [:download]
 
-    def example
+    def search
         if params[:search]
             @page = (params[:page] != nil) ? params[:page].to_i : 1
 

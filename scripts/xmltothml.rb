@@ -2,6 +2,9 @@ require 'nokogiri'
 
 class ABBYYFile < Nokogiri::XML::SAX::Document
     def initialize
+        @current_page_text = ''
+        @just_text = true
+
         @current_word = ''
         @adding_chars = false
         @page_num = 0
@@ -31,19 +34,19 @@ class ABBYYFile < Nokogiri::XML::SAX::Document
 
         case tag
         when 'page'
-            $thml.puts "<page title=\"Page #{@page_num}\" id=\"page_#{@page_num}\">"
+            @current_page_text = "<page title=\"Page #{@page_num}\" id=\"page_#{@page_num}\">"
             @page_num += 1
         when 'block'
-            $thml.puts "<block id=\"block_#{@block_num}\" class=\"#{attributes['blockType']}\">"
+            add_line "<block id=\"block_#{@block_num}\" class=\"#{attributes['blockType']}\">"
             @block_num += 1
         when 'par'
-            $thml.puts "<p id=\"p_#{@par_num}\">"
+            add_line "<p id=\"p_#{@par_num}\">"
             @par_num += 1
             @line_spacing = attributes.has_key?('lineSpacing') ? attributes['lineSpacing'].to_i : 0
         when 'line'
             @baseline = attributes['baseline'].to_i
         when 'formatting'
-            $thml.puts '<span>' #\n<br/>"
+            add_line '<span>' #\n<br/>"   # TODO: finish handling at some point
             # puts currentWord
         when 'charParams'
             if attributes['wordStart'] == 'true'
@@ -69,16 +72,17 @@ class ABBYYFile < Nokogiri::XML::SAX::Document
     def end_element(tag)
         case tag
         when 'page'
-            $thml.puts '</page>'
+            add_line '</page>'
+            put_page
         when 'block'
-            $thml.puts '</block>'
+            add_line '</block>'
         when 'par'
-            $thml.puts '</p>'
+            add_line '</p>'
         when 'formatting'
             if @current_word != ''
                 print_word
             end
-            $thml.puts '</span>'
+            add_line '</span>'
         when 'charParams'
             @adding_chars = false
             unless @has_added_chars
@@ -91,7 +95,28 @@ class ABBYYFile < Nokogiri::XML::SAX::Document
         @current_indent -= 1
     end
 
+    def add_line(text)
+        @current_page_text += "\n"
+        @current_page_text += text
+    end
+
+    def put_page
+        Page.create(:book_id => $id, :text => @current_page_text, :number => @page_num)
+    end
+
     def print_word
+        add_line "<word id=\"word_#{@word_num}\">#{@current_word}</word>"
+
+        # misc. stuff
+        @word_num += 1
+        @current_word = ''
+
+        if @just_text
+            return
+        end
+
+        ### stop here for now ###
+
         # wrapper around words for margin without expanding the word view
         $thml.print "<wrap id=\"wrap_#{@word_num}\">"
         # word itself
@@ -155,18 +180,28 @@ def print_head
     $css.puts 'word { background-image:url(m21.png); background-size:2718; }'
 end
 
-# Make files to write to
-$thml = File.open('out.html', 'w')
-$css = File.open('out.css', 'w')
+def insert_abbyy_to_db(id)
+    b = Book.create(:title => "#{id}", :archiveID => "#{id}", :author => 'coming soon')
 
-# Print an opening tag
-$thml.puts '<html>'
+    $id = b.id
 
-print_head
+    parser = Nokogiri::XML::SAX::Parser.new(ABBYYFile.new)
+    file = Rails.root.join('data', 'books', "#{id}", "#{id}.abbyy").to_s
+    parser.parse_file(file)
+end
 
-# Set up the parser
-parser = Nokogiri::XML::SAX::Parser.new(ABBYYFile.new)
-parser.parse_file(File.join('m21.abbyy'))
-
-# Print a closing tag
-$thml.puts '</html>'
+# # Make files to write to
+# $thml = File.open('out.html', 'w')
+# $css = File.open('out.css', 'w')
+#
+# # Print an opening tag
+# $thml.puts '<html>'
+#
+# print_head
+#
+# # Set up the parser
+# parser = Nokogiri::XML::SAX::Parser.new(ABBYYFile.new)
+# parser.parse_file(File.join('m21.abbyy'))
+#
+# # Print a closing tag
+# $thml.puts '</html>'

@@ -1,16 +1,10 @@
 Rails.application.routes.draw do
-  get 'archive/example'
-
-    # The priority is based upon order of creation: first created -> highest priority.
-    # See how all your routes lay out with "rake routes".
-
-    # You can have the root of your site routed with "root"
     root 'reflow#index'
 
-    get 'read/:id' => 'reflow#text'
+    get '/read/:id' => 'reflow#text'
 
-    get 'archive' => 'archive#example'
-    get 'archive/search' => 'archive#search'
+    get '/archive' => 'archive#search'
+    get '/archive/search' => 'archive#search'
     post '/archive/download' => 'archive#download'
 
     # Example of regular route:

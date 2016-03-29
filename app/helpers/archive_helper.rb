@@ -62,9 +62,11 @@ module ArchiveHelper
                 ungzip Rails.root.join('data', 'books', "#{id}", "#{id}.abbyy.gz").to_s, Rails.root.join('data', 'books', "#{id}", "#{id}.abbyy").to_s
                 unzip Rails.root.join('data', 'books', "#{id}", "#{id}_jp2.zip").to_s, Rails.root.join('data', 'books', "#{id}").to_s
 
-                require Rails.root.join('scripts', 'abbyytohtml.rb')
+                require Rails.root.join('scripts', 'xmltothml.rb')
 
-                # insert_abbyy_to_db(id, title)
+                puts '--> converting to html'
+                insert_abbyy_to_db(id)
+                puts '--> html converted and inserted to db'
             rescue Exception => e
                 puts e.message
                 puts e.backtrace.inspect
