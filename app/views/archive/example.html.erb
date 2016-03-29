@@ -25,7 +25,7 @@
                     <%= simple_format "<b>#{doc['downloads']}</b> downloads", {class:'nopad'} %>
                     <%= link_to "#{doc['identifier']}", "https://archive.org/details/#{doc['identifier']}", {class:'nopad nowrap'} %>
                     <br />
-                    <%= link_to 'Download', {:controller => :archive, :action => :download, :id => "#{doc['identifier']}"}, class:'btn btn-primary', role:'button' %>
+                    <%= link_to 'Download', '#', onclick:"post_download('#{doc['identifier']}')", class:'btn btn-primary', role:'button' %>
                 </div>
                 <div class="right">
                     <%= simple_format "#{doc['title']}", {class:'nopad'}, wrapper_tag: 'h4' %>
