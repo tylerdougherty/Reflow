@@ -39,9 +39,12 @@ class ArchiveController < ApplicationController
         f1 = @files.each.select{|x| x['format'] == 'Abbyy GZ'}[0]['name']
         f2 = @files.each.select{|x| x['format'] == 'Single Page Processed JP2 ZIP'}[0]['name']
 
+        title = @json['metadata']['title']
+        author = @json['metadata']['author']
+
         # TODO: error handling if we don't have both file types
 
-        download_archive_entry params[:id], f1, f2
+        download_archive_entry params[:id], f1, f2, title, author
 
         result = 'download started'
         respond_to do |format|

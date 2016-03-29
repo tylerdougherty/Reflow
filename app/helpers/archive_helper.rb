@@ -1,32 +1,19 @@
 module ArchiveHelper
     def download_file_async(source, dest)
         Thread.new(source, dest) do |source, dest|
-            begin
-                puts "--> downloading #{source}"
+            #create directories if necessary
+            require 'fileutils'
 
-                #create directories if necessary
-                require 'fileutils'
+            dirname = File.dirname dest
+            unless File.directory? dirname
+                FileUtils.mkdir_p(dirname)
+            end
 
-                dirname = File.dirname dest
-                unless File.directory? dirname
-                    FileUtils.mkdir_p(dirname)
-                end
+            #download the actual file
+            require 'open-uri'
 
-                #download the actual file
-                require 'open-uri'
-
-                open(source, 'r') do |fin|
-                    open(dest, 'wb') do |fout|
-                        while (buf = fin.read(8192))
-                            fout.write buf
-                        end
-                    end
-                end
-
-                puts "--> downloaded to #{dest}"
-            rescue Exception => e
-                puts e.message
-                puts e.backtrace.inspect
+            open(dest, 'wb') do |file|
+                file << open(source).read
             end
         end
     end
@@ -56,25 +43,30 @@ module ArchiveHelper
         puts '--> unzipped file'
     end
 
-    def download_archive_entry(identifier, abbyy_file, jp2_file)
-        Thread.new(identifier) do |id|
+    def download_archive_entry(identifier, abbyy_file, jp2_file, title, author)
+        Thread.new(identifier,title,author) do |id,t,a|
             begin
                 download_url = 'https://archive.org/download'
 
+                puts '--> downloading abbyy file'
                 d1 = download_file_async "#{download_url}/#{id}/#{abbyy_file}", Rails.root.join('data', 'books', "#{id}", "#{id}.abbyy.gz").to_s
+
+                puts '--> downloading page images'
                 d2 = download_file_async "#{download_url}/#{id}/#{jp2_file}", Rails.root.join('data', 'books', "#{id}", "#{id}_jp2.zip").to_s
 
                 d1.join
                 d2.join
+                puts '--> downloaded abbyy file'
+                puts '--> downloaded page images'
 
                 ungzip Rails.root.join('data', 'books', "#{id}", "#{id}.abbyy.gz").to_s, Rails.root.join('data', 'books', "#{id}", "#{id}.abbyy").to_s
                 unzip Rails.root.join('data', 'books', "#{id}", "#{id}_jp2.zip").to_s, Rails.root.join('data', 'books', "#{id}").to_s
 
-                require Rails.root.join('scripts', 'xmltothml.rb')
+                require Rails.root.join('scripts', 'abbyytohtml.rb')
 
                 puts '--> converting to html'
-                insert_abbyy_to_db(id)
-                puts '--> html converted and inserted to db'
+                insert_abbyy_to_db(id, t, a)
+                puts '--> html converted and inserted into db'
             rescue Exception => e
                 puts e.message
                 puts e.backtrace.inspect
