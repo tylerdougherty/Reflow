@@ -43,15 +43,15 @@ module ArchiveHelper
         puts '--> unzipped file'
     end
 
-    def download_archive_entry(id, title)
-        Thread.new(id) do |id|
+    def download_archive_entry(identifier, abbyy_file, jp2_file)
+        Thread.new(identifier) do |id|
             download_url = 'https://archive.org/download'
 
             puts '--> downloading abbyy file'
-            d1 = download_file_async "#{download_url}/#{id}/#{id}_abbyy.gz", Rails.root.join('data', 'books', "#{id}", "#{id}.abbyy.gz").to_s
+            d1 = download_file_async "#{download_url}/#{id}/#{abbyy_file}", Rails.root.join('data', 'books', "#{id}", "#{id}.abbyy.gz").to_s
 
             puts '--> downloading page images'
-            d2 = download_file_async "#{download_url}/#{id}/#{id}_jp2.zip", Rails.root.join('data', 'books', "#{id}", "#{id}_jp2.zip").to_s
+            d2 = download_file_async "#{download_url}/#{id}/#{jp2_file}", Rails.root.join('data', 'books', "#{id}", "#{id}_jp2.zip").to_s
 
             d1.join
             d2.join

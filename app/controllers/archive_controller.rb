@@ -4,6 +4,8 @@ require 'json'
 class ArchiveController < ApplicationController
     include ArchiveHelper
 
+    skip_before_action :verify_authenticity_token, only: [:download]
+
     def example
         if params[:search]
             @page = (params[:page] != nil) ? params[:page].to_i : 1
@@ -34,10 +36,16 @@ class ArchiveController < ApplicationController
 
         @files = @json['files']
 
-        @files.each do |file|
-            if file['name'].include? '.gz'
-                download_archive_entry params[:id, :title]
-            end
+        f1 = @files.each.select{|x| x['format'] == 'Abbyy GZ'}[0]['name']
+        f2 = @files.each.select{|x| x['format'] == 'Single Page Processed JP2 ZIP'}[0]['name']
+
+        # TODO: error handling if we don't have both file types
+
+        download_archive_entry params[:id], f1, f2
+
+        result = 'download started'
+        respond_to do |format|
+            format.json { render :json => {:result => result}}
         end
     end
 end
