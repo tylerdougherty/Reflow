@@ -43,7 +43,7 @@ module ArchiveHelper
         puts '--> unzipped file'
     end
 
-    def download_archive_entry(id)
+    def download_archive_entry(id, title)
         Thread.new(id) do |id|
             download_url = 'https://archive.org/download'
 
@@ -60,6 +60,10 @@ module ArchiveHelper
 
             ungzip Rails.root.join('data', 'books', "#{id}", "#{id}.abbyy.gz").to_s, Rails.root.join('data', 'books', "#{id}", "#{id}.abbyy").to_s
             unzip Rails.root.join('data', 'books', "#{id}", "#{id}_jp2.zip").to_s, Rails.root.join('data', 'books', "#{id}").to_s
+
+            require Rails.root.join('scripts', 'abbyytohtml.rb')
+
+            insert_abbyy_to_db(id, title)
         end
     end
 

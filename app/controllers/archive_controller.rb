@@ -36,7 +36,7 @@ class ArchiveController < ApplicationController
 
         @files.each do |file|
             if file['name'].include? '.gz'
-                download_archive_entry params[:id]
+                download_archive_entry params[:id, :title]
             end
         end
     end
