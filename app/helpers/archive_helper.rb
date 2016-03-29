@@ -45,25 +45,30 @@ module ArchiveHelper
 
     def download_archive_entry(identifier, abbyy_file, jp2_file)
         Thread.new(identifier) do |id|
-            download_url = 'https://archive.org/download'
+            begin
+                download_url = 'https://archive.org/download'
 
-            puts '--> downloading abbyy file'
-            d1 = download_file_async "#{download_url}/#{id}/#{abbyy_file}", Rails.root.join('data', 'books', "#{id}", "#{id}.abbyy.gz").to_s
+                puts '--> downloading abbyy file'
+                d1 = download_file_async "#{download_url}/#{id}/#{abbyy_file}", Rails.root.join('data', 'books', "#{id}", "#{id}.abbyy.gz").to_s
 
-            puts '--> downloading page images'
-            d2 = download_file_async "#{download_url}/#{id}/#{jp2_file}", Rails.root.join('data', 'books', "#{id}", "#{id}_jp2.zip").to_s
+                puts '--> downloading page images'
+                d2 = download_file_async "#{download_url}/#{id}/#{jp2_file}", Rails.root.join('data', 'books', "#{id}", "#{id}_jp2.zip").to_s
 
-            d1.join
-            d2.join
-            puts '--> downloaded abbyy file'
-            puts '--> downloaded page images'
+                d1.join
+                d2.join
+                puts '--> downloaded abbyy file'
+                puts '--> downloaded page images'
 
-            ungzip Rails.root.join('data', 'books', "#{id}", "#{id}.abbyy.gz").to_s, Rails.root.join('data', 'books', "#{id}", "#{id}.abbyy").to_s
-            unzip Rails.root.join('data', 'books', "#{id}", "#{id}_jp2.zip").to_s, Rails.root.join('data', 'books', "#{id}").to_s
+                ungzip Rails.root.join('data', 'books', "#{id}", "#{id}.abbyy.gz").to_s, Rails.root.join('data', 'books', "#{id}", "#{id}.abbyy").to_s
+                unzip Rails.root.join('data', 'books', "#{id}", "#{id}_jp2.zip").to_s, Rails.root.join('data', 'books', "#{id}").to_s
 
-            require Rails.root.join('scripts', 'abbyytohtml.rb')
+                require Rails.root.join('scripts', 'abbyytohtml.rb')
 
-            insert_abbyy_to_db(id, title)
+                # insert_abbyy_to_db(id, title)
+            rescue Exception => e
+                puts e.message
+                puts e.backtrace.inspect
+            end
         end
     end
 
