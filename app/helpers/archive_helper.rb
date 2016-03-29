@@ -1,19 +1,32 @@
 module ArchiveHelper
     def download_file_async(source, dest)
         Thread.new(source, dest) do |source, dest|
-            #create directories if necessary
-            require 'fileutils'
+            begin
+                puts "--> downloading #{source}"
 
-            dirname = File.dirname dest
-            unless File.directory? dirname
-                FileUtils.mkdir_p(dirname)
-            end
+                #create directories if necessary
+                require 'fileutils'
 
-            #download the actual file
-            require 'open-uri'
+                dirname = File.dirname dest
+                unless File.directory? dirname
+                    FileUtils.mkdir_p(dirname)
+                end
 
-            open(dest, 'wb') do |file|
-                file << open(source).read
+                #download the actual file
+                require 'open-uri'
+
+                open(source, 'r') do |fin|
+                    open(dest, 'wb') do |fout|
+                        while (buf = fin.read(8192))
+                            fout.write buf
+                        end
+                    end
+                end
+
+                puts "--> downloaded to #{dest}"
+            rescue Exception => e
+                puts e.message
+                puts e.backtrace.inspect
             end
         end
     end
@@ -48,16 +61,11 @@ module ArchiveHelper
             begin
                 download_url = 'https://archive.org/download'
 
-                puts '--> downloading abbyy file'
                 d1 = download_file_async "#{download_url}/#{id}/#{abbyy_file}", Rails.root.join('data', 'books', "#{id}", "#{id}.abbyy.gz").to_s
-
-                puts '--> downloading page images'
                 d2 = download_file_async "#{download_url}/#{id}/#{jp2_file}", Rails.root.join('data', 'books', "#{id}", "#{id}_jp2.zip").to_s
 
                 d1.join
                 d2.join
-                puts '--> downloaded abbyy file'
-                puts '--> downloaded page images'
 
                 ungzip Rails.root.join('data', 'books', "#{id}", "#{id}.abbyy.gz").to_s, Rails.root.join('data', 'books', "#{id}", "#{id}.abbyy").to_s
                 unzip Rails.root.join('data', 'books', "#{id}", "#{id}_jp2.zip").to_s, Rails.root.join('data', 'books', "#{id}").to_s
