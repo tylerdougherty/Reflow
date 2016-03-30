@@ -23,7 +23,7 @@ class ArchiveController < ApplicationController
 
             @json = get_json_response "#{search_url}?#{query}&#{requested_info}&#{output}&#{sort}&#{rows}&#{page}"
 
-            @docs = @json['response']['docs']
+            @docs = @json['response']['docs'].each{|doc| doc['downloaded'] = !Book.find_by_archiveID(doc['identifier']).nil?}
             @results = @json['response']['numFound']
             @has_next = @results > @page*page_size
             @has_prev = @page > 1

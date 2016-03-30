@@ -1,4 +1,8 @@
 module ArchiveHelper
+    def errors
+        @error_logger ||= Logger.new("#{Rails.root}/log/errors.log")
+    end
+
     def download_file_async(source, dest)
         Thread.new(source, dest) do |source, dest|
             begin
@@ -25,8 +29,8 @@ module ArchiveHelper
 
                 puts "--> downloaded to #{dest}"
             rescue Exception => e
-                puts e.message
-                puts e.backtrace.inspect
+                errors.debug e.message
+                errors.debug e.backtrace.inspect
             end
         end
     end
@@ -76,8 +80,8 @@ module ArchiveHelper
 
                 insert_abbyy_to_db(archive_id, b.id)
             rescue Exception => e
-                puts e.message
-                puts e.backtrace.inspect
+                errors.debug e.message
+                errors.debug e.backtrace.inspect
             end
         end
     end

@@ -22,10 +22,14 @@
         <% @docs.each do |doc| %>
             <div class="search-result">
                 <div class="left">
-                    <%= simple_format "<b>#{doc['downloads']}</b> downloads", {class:'nopad'} %>
-                    <%= link_to "#{doc['identifier']}", "https://archive.org/details/#{doc['identifier']}", {class:'nopad nowrap'} %>
-                    <br />
-                    <%= link_to 'Download', '#', onclick:"post_download(this, '#{doc['identifier']}')", class:'btn btn-primary', role:'button' %>
+                    <%= simple_format "<b>#{doc['downloads']}</b> downloads", {class: 'nopad'} %>
+                    <%= link_to "#{doc['identifier']}", "https://archive.org/details/#{doc['identifier']}", {class: 'nopad nowrap'} %>
+                    <br/>
+                    <% if doc['downloaded'] %>
+                        <%= link_to 'Downloaded', '#', class: 'btn btn-danger disabled', role: 'button' %>
+                    <% else %>
+                        <%= link_to 'Download', 'javascript:void(0);', onclick: "post_download(this, '#{doc['identifier']}')", class: 'btn btn-primary', role: 'button' %>
+                    <% end %>
                 </div>
                 <div class="right">
                     <%= simple_format "#{doc['title']}", {class:'nopad'}, wrapper_tag: 'h4' %>
