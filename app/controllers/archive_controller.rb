@@ -22,8 +22,9 @@ class ArchiveController < ApplicationController
             page = "page=#{@page}"
             @json = get_json_response "#{search_url}?#{query}&#{requested_info}&#{output}&#{sort}&#{rows}&#{page}"
 
-            @docs = @json['response']['docs'].select { |doc| doc['format'].map{|it| it.downcase.include? 'abbyy'}.include? true } # only take results with Abbyy results
-            @results = @docs.count
+            # TODO: FIX THIS SEARCH WHEN IT WORKS ON ARCHIVE.ORG AGAIN
+            @docs = @json['response']['docs'].select { |doc| doc['format'].map{|it| it.downcase.include? 'abbyy'}.include? true }
+            @results = @docs.count # TODO: <---------
             @has_next = @results > @page*page_size
             @has_prev = @page > 1
         else
@@ -39,13 +40,18 @@ class ArchiveController < ApplicationController
         f1 = @files.each.select{|x| x['format'] == 'Abbyy GZ'}[0]['name']
         f2 = @files.each.select{|x| x['format'] == 'Single Page Processed JP2 ZIP'}[0]['name']
 
-        # TODO: error handling if we don't have both file types
+        if f1.nil? or f2.nil?
+            success = false
+            message = 'Download failed: Needed files do not exist!'
+        else
+            download_archive_entry params[:id], f1, f2
 
-        download_archive_entry params[:id], f1, f2
+            success = true
+            message = 'Download started...'
+        end
 
-        result = 'download started'
         respond_to do |format|
-            format.json { render :json => {:result => result}}
+            format.json { render :json => {:success => success, :message => message}}
         end
     end
 end
