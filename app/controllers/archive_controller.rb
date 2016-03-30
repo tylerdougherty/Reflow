@@ -44,7 +44,7 @@ class ArchiveController < ApplicationController
             success = false
             message = 'Download failed: Needed files do not exist!'
         else
-            download_archive_entry params[:id], f1, f2
+            download_archive_entry params[:id], f1, f2, @json['metadata']
 
             success = true
             message = 'Download started...'

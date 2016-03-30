@@ -56,25 +56,25 @@ module ArchiveHelper
         puts '--> unzipped file'
     end
 
-    def download_archive_entry(identifier, abbyy_file, jp2_file)
-        Thread.new(identifier) do |id|
+    def download_archive_entry(identifier, abbyy, jp2, metadata_hash)
+        Thread.new(identifier, abbyy, jp2, metadata_hash) do |archive_id, abbyy_file, jp2_file, metadata|
             begin
+                b = Book.create(:title => metadata['title'], :archiveID => "#{archive_id}", :author => metadata['creator'] || 'Not listed')
+
                 download_url = 'https://archive.org/download'
 
-                d1 = download_file_async "#{download_url}/#{id}/#{abbyy_file}", Rails.root.join('data', 'books', "#{id}", "#{id}.abbyy.gz").to_s
-                d2 = download_file_async "#{download_url}/#{id}/#{jp2_file}", Rails.root.join('data', 'books', "#{id}", "#{id}_jp2.zip").to_s
+                d1 = download_file_async "#{download_url}/#{archive_id}/#{abbyy_file}", Rails.root.join('data', 'books', "#{archive_id}", "#{archive_id}.abbyy.gz").to_s
+                d2 = download_file_async "#{download_url}/#{archive_id}/#{jp2_file}", Rails.root.join('data', 'books', "#{archive_id}", "#{archive_id}_jp2.zip").to_s
 
                 d1.join
                 d2.join
 
-                ungzip Rails.root.join('data', 'books', "#{id}", "#{id}.abbyy.gz").to_s, Rails.root.join('data', 'books', "#{id}", "#{id}.abbyy").to_s
-                unzip Rails.root.join('data', 'books', "#{id}", "#{id}_jp2.zip").to_s, Rails.root.join('data', 'books', "#{id}").to_s
+                ungzip Rails.root.join('data', 'books', "#{archive_id}", "#{archive_id}.abbyy.gz").to_s, Rails.root.join('data', 'books', "#{archive_id}", "#{archive_id}.abbyy").to_s
+                unzip Rails.root.join('data', 'books', "#{archive_id}", "#{archive_id}_jp2.zip").to_s, Rails.root.join('data', 'books', "#{archive_id}").to_s
 
                 require Rails.root.join('scripts', 'xmltothml.rb')
 
-                puts '--> converting to html'
-                insert_abbyy_to_db(id)
-                puts '--> html converted and inserted to db'
+                insert_abbyy_to_db(archive_id, b.id)
             rescue Exception => e
                 puts e.message
                 puts e.backtrace.inspect
