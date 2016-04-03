@@ -1,19 +1,36 @@
 module ArchiveHelper
+    def errors
+        @error_logger ||= Logger.new("#{Rails.root}/log/errors.log")
+    end
+
     def download_file_async(source, dest)
         Thread.new(source, dest) do |source, dest|
-            #create directories if necessary
-            require 'fileutils'
+            begin
+                puts "--> downloading #{source}"
 
-            dirname = File.dirname dest
-            unless File.directory? dirname
-                FileUtils.mkdir_p(dirname)
-            end
+                #create directories if necessary
+                require 'fileutils'
 
-            #download the actual file
-            require 'open-uri'
+                dirname = File.dirname dest
+                unless File.directory? dirname
+                    FileUtils.mkdir_p(dirname)
+                end
 
-            open(dest, 'wb') do |file|
-                file << open(source).read
+                #download the actual file
+                require 'open-uri'
+
+                open(source, 'r') do |fin|
+                    open(dest, 'wb') do |fout|
+                        while (buf = fin.read(8192))
+                            fout.write buf
+                        end
+                    end
+                end
+
+                puts "--> downloaded to #{dest}"
+            rescue Exception => e
+                errors.debug e.message
+                errors.debug e.backtrace.inspect
             end
         end
     end
@@ -43,33 +60,28 @@ module ArchiveHelper
         puts '--> unzipped file'
     end
 
-    def download_archive_entry(identifier, abbyy_file, jp2_file, title, author)
-        Thread.new(identifier,title,author) do |id,t,a|
+    def download_archive_entry(identifier, abbyy, jp2, metadata_hash)
+        Thread.new(identifier, abbyy, jp2, metadata_hash) do |archive_id, abbyy_file, jp2_file, metadata|
             begin
+                b = Book.create(:title => metadata['title'], :archiveID => "#{archive_id}", :author => metadata['creator'] || 'Not listed')
+
                 download_url = 'https://archive.org/download'
 
-                puts '--> downloading abbyy file'
-                d1 = download_file_async "#{download_url}/#{id}/#{abbyy_file}", Rails.root.join('data', 'books', "#{id}", "#{id}.abbyy.gz").to_s
-
-                puts '--> downloading page images'
-                d2 = download_file_async "#{download_url}/#{id}/#{jp2_file}", Rails.root.join('data', 'books', "#{id}", "#{id}_jp2.zip").to_s
+                d1 = download_file_async "#{download_url}/#{archive_id}/#{abbyy_file}", Rails.root.join('data', 'books', "#{archive_id}", "#{archive_id}.abbyy.gz").to_s
+                d2 = download_file_async "#{download_url}/#{archive_id}/#{jp2_file}", Rails.root.join('data', 'books', "#{archive_id}", "#{archive_id}_jp2.zip").to_s
 
                 d1.join
                 d2.join
-                puts '--> downloaded abbyy file'
-                puts '--> downloaded page images'
 
-                ungzip Rails.root.join('data', 'books', "#{id}", "#{id}.abbyy.gz").to_s, Rails.root.join('data', 'books', "#{id}", "#{id}.abbyy").to_s
-                unzip Rails.root.join('data', 'books', "#{id}", "#{id}_jp2.zip").to_s, Rails.root.join('data', 'books', "#{id}").to_s
+                ungzip Rails.root.join('data', 'books', "#{archive_id}", "#{archive_id}.abbyy.gz").to_s, Rails.root.join('data', 'books', "#{archive_id}", "#{archive_id}.abbyy").to_s
+                unzip Rails.root.join('data', 'books', "#{archive_id}", "#{archive_id}_jp2.zip").to_s, Rails.root.join('data', 'books', "#{archive_id}").to_s
 
-                require Rails.root.join('scripts', 'abbyytohtml.rb')
+                require Rails.root.join('scripts', 'xmltothml.rb')
 
-                puts '--> converting to html'
-                insert_abbyy_to_db(id, t, a)
-                puts '--> html converted and inserted into db'
+                insert_abbyy_to_db(archive_id, b.id)
             rescue Exception => e
-                puts e.message
-                puts e.backtrace.inspect
+                errors.debug e.message
+                errors.debug e.backtrace.inspect
             end
         end
     end

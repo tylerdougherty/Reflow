@@ -180,14 +180,16 @@ def print_head
     $css.puts 'word { background-image:url(m21.png); background-size:2718; }'
 end
 
-def insert_abbyy_to_db(id)
-    b = Book.create(:title => "#{id}", :archiveID => "#{id}", :author => 'coming soon')
+def insert_abbyy_to_db(archive_id, book_id)
+    puts '--> converting to html'
 
-    $id = b.id
+    $id = book_id
 
     parser = Nokogiri::XML::SAX::Parser.new(ABBYYFile.new)
-    file = Rails.root.join('data', 'books', "#{id}", "#{id}.abbyy").to_s
+    file = Rails.root.join('data', 'books', "#{archive_id}", "#{archive_id}.abbyy").to_s
     parser.parse_file(file)
+
+    puts '--> html converted and inserted to db'
 end
 
 # # Make files to write to

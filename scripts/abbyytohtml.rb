@@ -175,18 +175,16 @@ def print_head
     $css.puts "word { background-image:url(//data/books/#{ARGV[0]}/#{ARGV[0]}.png); background-size:2718; }"
 end
 
-def insert_abbyy_to_db(id, title, author)
-    $id = id
-    $title = title
-    $author = author
-    parser = Nokogiri::XML::SAX::Parser.new(ABBYYFile.new)
-    file = Rails.root.join('data', 'books', "#{id}", "#{id}.abbyy").to_s
-    #parser.parse_file(file)
+# def insert_abbyy_to_db(id, title)
+#     $id = id
+#     parser = Nokogiri::XML::SAX::Parser.new(ABBYYFile.new)
+#     file = Rails.root.join('data', 'books', "#{id}", "#{id}.abbyy").to_s
+#     parser.parse_file(file)
+#
+#     b = Book.create(:title => "#{title}", :author => null, :archiveID => "#{id}")
+# end
 
-    b = Book.create!(:title => "#{title}", :author => "#{author}", :archiveID => "#{id}")
-end
-
-#insert_abbyy_to_db("m21", "m21")
+insert_abbyy_to_db("m21", "m21")
 
 # Make files to write to
 #$thml = File.open('out.html', 'w')

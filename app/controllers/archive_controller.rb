@@ -13,17 +13,18 @@ class ArchiveController < ApplicationController
             page_size = 50
 
             search_url = 'https://archive.org/advancedsearch.php'
-            # TODO: escape search query
-            query = "q=\"title:\"#{params[:search]}\" mediatype:\"texts\"\""
+            # TODO: escape search query (to prevent malicious queries)
+            query = "q=\"title:\"#{params[:search]}\" mediatype:\"texts\"\" format:\"Abbyy GZ\" AND format:\"Single Page Processed JP2 ZIP\""
             requested_info = 'fl[]=downloads,format,identifier,title'
             output = 'output=\"json\"'
             sort = 'sort[]=downloads desc'
             rows = "rows=#{page_size}"
             page = "page=#{@page}"
+
             @json = get_json_response "#{search_url}?#{query}&#{requested_info}&#{output}&#{sort}&#{rows}&#{page}"
 
-            @docs = @json['response']['docs'].select { |doc| doc['format'].map{|it| it.downcase.include? 'abbyy'}.include? true } # only take results with Abbyy results
-            @results = @docs.count
+            @docs = @json['response']['docs'].each{|doc| doc['downloaded'] = !Book.find_by_archiveID(doc['identifier']).nil?}
+            @results = @json['response']['numFound']
             @has_next = @results > @page*page_size
             @has_prev = @page > 1
         else
@@ -39,16 +40,19 @@ class ArchiveController < ApplicationController
         f1 = @files.each.select{|x| x['format'] == 'Abbyy GZ'}[0]['name']
         f2 = @files.each.select{|x| x['format'] == 'Single Page Processed JP2 ZIP'}[0]['name']
 
-        title = @json['metadata']['title']
-        author = @json['metadata']['author']
+        # May be unnecessary now but it doesn't hurt to make sure
+        if f1.nil? or f2.nil?
+            success = false
+            message = 'Download failed: Needed files do not exist!'
+        else
+            download_archive_entry params[:id], f1, f2, @json['metadata']
 
-        # TODO: error handling if we don't have both file types
+            success = true
+            message = 'Download started...'
+        end
 
-        download_archive_entry params[:id], f1, f2, title, author
-
-        result = 'download started'
         respond_to do |format|
-            format.json { render :json => {:result => result}}
+            format.json { render :json => {:success => success, :message => message}}
         end
     end
 end
