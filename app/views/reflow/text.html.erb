@@ -1,14 +1,18 @@
 <div class="c1">
-
     <ul class="pager">
         <% if @hasPrevious %><li class="previous"><%= link_to 'Previous', params.merge(:page => @pageNum-1) %></li><% end %>
         <!-- TODO: add actual page number buttons here -->
         <% if @hasNext %><li class="next"><%= link_to 'Next', params.merge(:page => @pageNum+1) %></li><% end %>
     </ul>
 
-
     <p>
         <%= @currentPage.text.html_safe %>
     </p>
 
+    <link href="<%= "/book/#{params[:id]}/page/#{@pageNum}/css" %>" rel="stylesheet" type="text/css" />
+
+    <!-- again, what was this supposed to do? -->
+    <% unless @archive_id.nil? %>
+
+    <% end %>
 </div>

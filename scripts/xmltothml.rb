@@ -2,7 +2,8 @@ require 'nokogiri'
 
 class ABBYYFile < Nokogiri::XML::SAX::Document
     def initialize
-        @current_page_text = ''
+        @current_page_html = ''
+        @current_page_css = ''
         @just_text = true
 
         @current_word = ''
@@ -11,10 +12,8 @@ class ABBYYFile < Nokogiri::XML::SAX::Document
         @block_num = 0
         @par_num = 0
         @word_num = 0
-        @current_indent = 0
 
         #constants
-        @tab = "\t"
         @lr_padding = 4
         @baseline_percent = 2.0/3.0
 
@@ -34,26 +33,25 @@ class ABBYYFile < Nokogiri::XML::SAX::Document
 
         case tag
         when 'page'
-            @current_page_text = "<page title=\"Page #{@page_num}\" id=\"page_#{@page_num}\">"
+            add_html_line "<page title=\"Page #{@page_num}\" id=\"page_#{@page_num}\">"
+
             @page_num += 1
         when 'block'
-            add_line "<block id=\"block_#{@block_num}\" class=\"#{attributes['blockType']}\">"
+            add_html_line "<block id=\"block_#{@block_num}\" class=\"#{attributes['blockType']}\">"
             @block_num += 1
         when 'par'
-            add_line "<p id=\"p_#{@par_num}\">"
+            add_html_line "<p id=\"p_#{@par_num}\">"
             @par_num += 1
             @line_spacing = attributes.has_key?('lineSpacing') ? attributes['lineSpacing'].to_i : 0
         when 'line'
             @baseline = attributes['baseline'].to_i
         when 'formatting'
-            add_line '<span>' #\n<br/>"   # TODO: finish handling at some point
-            # puts currentWord
+            add_html_line '<span>'   # TODO: finish handling at some point
         when 'charParams'
             if attributes['wordStart'] == 'true'
                 if @current_word != ''
                     print_word
                 end
-                # $thml.print "<word>"
             end
             @rx = @right
             @left = attributes['l'].to_i < @left ? attributes['l'].to_i : @left
@@ -65,24 +63,22 @@ class ABBYYFile < Nokogiri::XML::SAX::Document
         else
             # don't do anything
         end
-
-        @current_indent += 1
     end
 
     def end_element(tag)
         case tag
         when 'page'
-            add_line '</page>'
+            add_html_line '</page>'
             put_page
         when 'block'
-            add_line '</block>'
+            add_html_line '</block>'
         when 'par'
-            add_line '</p>'
+            add_html_line '</p>'
         when 'formatting'
             if @current_word != ''
                 print_word
             end
-            add_line '</span>'
+            add_html_line '</span>'
         when 'charParams'
             @adding_chars = false
             unless @has_added_chars
@@ -91,38 +87,46 @@ class ABBYYFile < Nokogiri::XML::SAX::Document
         else
             # don't do anything
         end
-
-        @current_indent -= 1
     end
 
-    def add_line(text)
-        @current_page_text += "\n"
-        @current_page_text += text
+    def add_html_line(text)
+        @current_page_html += "\n"
+        @current_page_html += text
+    end
+
+    def add_css_line(text)
+        @current_page_css += "\n"
+        @current_page_css += text
     end
 
     def put_page
-        Page.create(:book_id => $id, :text => @current_page_text, :number => @page_num)
+        Page.create(:book_id => $book_id, :text => @current_page_html, :css => @current_page_css, :number => @page_num)
+
+        # #create directories if necessary
+        # require 'fileutils'
+        #
+        # # TODO: switch this back to the data directory
+        # css_filename = Rails.root.join('data', 'books', $archive_id, 'stylesheets', "#{@page_num}.css")
+        # dirname = File.dirname css_filename
+        # unless File.directory? dirname
+        #     FileUtils.mkdir_p(dirname)
+        # end
+        #
+        # File.open(css_filename, 'w') do |cssout|
+        #     cssout.puts "#{$archive_id}_#{@page_num.to_s.rjust(4, '0')}.jp2"
+        # end
+
+        @current_page_html = ''
+        @current_page_css = ''
     end
 
     def print_word
-        add_line "<word id=\"word_#{@word_num}\">#{@current_word}</word>"
-
-        # misc. stuff
-        @word_num += 1
-        @current_word = ''
-
-        if @just_text
-            return
-        end
-
-        ### stop here for now ###
-
         # wrapper around words for margin without expanding the word view
-        $thml.print "<wrap id=\"wrap_#{@word_num}\">"
+        add_html_line "<wrap id=\"wrap_#{@word_num}\">"
         # word itself
-        $thml.print "<word id=\"word_#{@word_num}\">#{@current_word}</word>"
+        add_html_line "<word id=\"word_#{@word_num}\">#{@current_word}</word>"
         # close the wrapper
-        $thml.puts '</wrap>'
+        add_html_line '</wrap>'
 
         # compute word dimensions
         @right = / $/ =~ @current_word ? @rx : @right
@@ -135,8 +139,8 @@ class ABBYYFile < Nokogiri::XML::SAX::Document
         #   on the wrap element it is the actual size on the page
 
         # css entry for word
-        $css.print "#word_#{@word_num} { width:#{ww}px; height:#{wh}px; "
-        $css.puts "background-position:-#{wl}px -#{wt}px; } /* #{@current_word} */"
+        add_css_line "#word_#{@word_num} { width:#{ww}px; height:#{wh}px; "
+        add_css_line "background-position:-#{wl}px -#{wt}px; } /* #{@current_word} */"
 
         # compute wrap dimensions if necessary
         if @line_spacing != 0 and wh < @line_spacing
@@ -147,7 +151,7 @@ class ABBYYFile < Nokogiri::XML::SAX::Document
             top_pad += @line_spacing - top_pad - bot_pad - wh
 
             # css entry for wrapper
-            $css.puts "#wrap_#{@word_num} { padding:#{top_pad}px #{@lr_padding}px #{bot_pad}px; height:#{wh}px; }"
+            add_css_line "#wrap_#{@word_num} { padding:#{top_pad}px #{@lr_padding}px #{bot_pad}px; height:#{wh}px; }"
         end
 
         # misc. stuff
@@ -183,7 +187,8 @@ end
 def insert_abbyy_to_db(archive_id, book_id)
     puts '--> converting to html'
 
-    $id = book_id
+    $book_id = book_id
+    $archive_id = archive_id
 
     parser = Nokogiri::XML::SAX::Parser.new(ABBYYFile.new)
     file = Rails.root.join('data', 'books', "#{archive_id}", "#{archive_id}.abbyy").to_s

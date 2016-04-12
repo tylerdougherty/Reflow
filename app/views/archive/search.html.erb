@@ -1,43 +1,51 @@
-<h1><b>Archive.org Search</b></h1>
-<!--<p>Try searching: https://archive.org/metadata/mobydickorwhale01melvuoft</p>-->
+<div class="center">
+    <h1><b>Archive.org Search</b></h1>
+    <!--<p>Try searching: https://archive.org/metadata/mobydickorwhale01melvuoft</p>-->
 
-<%= form_tag('/archive/search', method: 'get') do %>
-    <button type="submit" class="btn btn-success">Submit</button>
-    <div class="search">
-        <%= text_field_tag(:search, params[:search], placeholder: 'Search Internet Archive', class: 'form-control') %>
-    </div>
-<% end %>
+    <%= form_tag('/archive/search', method: 'get') do %>
+        <button type="submit" class="btn btn-success">Submit</button>
+        <div class="search">
+            <%= text_field_tag(:search, params[:search], placeholder: 'Search Internet Archive', class: 'form-control') %>
+        </div>
+    <% end %>
 
-<% if @json %>
-    <div class="results">
-        <%= simple_format "<i>#{@results} search results returned</i>" %>
+    <% if @json %>
+        <div class="results">
+            <%= simple_format "<i>#{@results} search results returned</i>" %>
 
-        <ul class="pager">
-            <% if @has_prev %><li class="previous"><%= link_to 'Previous', params.merge(:page => @page-1) %></li><% end %>
-            <!-- TODO: add actual page number buttons here -->
-            <% if @has_next %><li class="next"><%= link_to 'Next', params.merge(:page => @page+1) %></li><% end %>
-        </ul>
+            <ul class="pager">
+                <% if @has_prev %>
+                    <li class="previous"><%= link_to 'Previous', params.merge(:page => @page-1) %></li>
+                <% end %>
+                <!-- TODO: add actual page number buttons here -->
+                <% if @has_next %>
+                    <li class="next"><%= link_to 'Next', params.merge(:page => @page+1) %></li>
+                <% end %>
+            </ul>
 
-        <br/>
-        <% @docs.each do |doc| %>
-            <div class="search-result">
-                <div class="left">
-                    <%= simple_format "<b>#{doc['downloads']}</b> downloads", {class: 'nopad'} %>
-                    <%= link_to "#{doc['identifier']}", "https://archive.org/details/#{doc['identifier']}", {class: 'nopad nowrap'} %>
-                    <br/>
-                    <% if doc['downloaded'] %>
-                        <%= link_to 'Downloaded', '#', class: 'btn btn-danger disabled', role: 'button' %>
-                    <% else %>
-                        <%= link_to 'Download', 'javascript:void(0);', onclick: "post_download(this, '#{doc['identifier']}')", class: 'btn btn-primary', role: 'button' %>
-                    <% end %>
+            <br/>
+            <% @docs.each do |doc| %>
+                <div class="search-result">
+                    <div class="left">
+                        <%= simple_format "<b>#{doc['downloads']}</b> downloads", {class: 'nopad'} %>
+                        <%= link_to "#{doc['identifier']}", "https://archive.org/details/#{doc['identifier']}", {class: 'nopad nowrap'} %>
+                        <br/>
+                        <% if doc['downloaded'] %>
+                            <%= link_to 'Downloaded', '#', class: 'btn btn-danger disabled', role: 'button' %>
+                        <% else %>
+                            <%= link_to 'Download', 'javascript:void(0);', onclick: "post_download(this, '#{doc['identifier']}')", class: 'btn btn-primary', role: 'button' %>
+                        <% end %>
+                    </div>
+                    <div class="right">
+                        <%= simple_format "#{doc['title']}", {class: 'nopad'}, wrapper_tag: 'h4' %>
+                    </div>
                 </div>
-                <div class="right">
-                    <%= simple_format "#{doc['title']}", {class:'nopad'}, wrapper_tag: 'h4' %>
-                </div>
-            </div>
-        <% end %>
-    </div>
-<% end %>
+            <% end %>
+        </div>
+    <% end %>
+</div>
+
+
 
 <%= stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css' %>
 <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js' %>

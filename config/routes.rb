@@ -2,6 +2,7 @@ Rails.application.routes.draw do
     root 'reflow#index'
 
     get '/book/:id(/page/:page)' => 'reflow#text'
+    get '/book/:id/page/:page/css' => 'reflow#css'
 
     get '/archive' => 'archive#search'
     get '/archive/search' => 'archive#search'

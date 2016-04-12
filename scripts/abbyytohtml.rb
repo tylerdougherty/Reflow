@@ -2,7 +2,7 @@ require 'nokogiri'
 
 class ABBYYFile < Nokogiri::XML::SAX::Document
     def initialize
-        @current_page_text = ''
+        @current_page_html = ''
         @just_text = true
 
         @current_word = ''
@@ -11,7 +11,6 @@ class ABBYYFile < Nokogiri::XML::SAX::Document
         @block_num = 0
         @par_num = 0
         @word_num = 0
-        @current_indent = 0
 
         #constants
         @tab = "\t"
@@ -38,7 +37,7 @@ class ABBYYFile < Nokogiri::XML::SAX::Document
             @page_num += 1
 
             if @just_text
-                @current_page_text = ''
+                @current_page_html = ''
             end
         when 'block'
             $thml.puts "<block id=\"block_#{@block_num}\" class=\"#{attributes['blockType']}\">"
@@ -69,8 +68,6 @@ class ABBYYFile < Nokogiri::XML::SAX::Document
         else
             # don't do anything
         end
-
-        @current_indent += 1
     end
 
     def end_element(tag)
@@ -96,8 +93,6 @@ class ABBYYFile < Nokogiri::XML::SAX::Document
         else
             # don't do anything
         end
-
-        @current_indent -= 1
     end
 
     def put_page
@@ -105,7 +100,7 @@ class ABBYYFile < Nokogiri::XML::SAX::Document
     end
 
     def print_word
-        @current_page_text += ' ' + @current_word
+        @current_page_html += ' ' + @current_word
 
         if @just_text
             return

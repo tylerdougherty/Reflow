@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20160204024350) do
   create_table "pages", force: :cascade do |t|
     t.integer "number"
     t.string  "text"
+    t.string  "css"
     t.integer "book_id"
   end
 

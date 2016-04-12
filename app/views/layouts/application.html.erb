@@ -1,46 +1,48 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Reflow</title>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <title>Reflow</title>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-  <%= stylesheet_link_tag('application') %>
+    <%= stylesheet_link_tag('application.css') %>
 
-  <%= csrf_meta_tags %>
+    <%= yield :head %>
+
+    <%= csrf_meta_tags %>
 </head>
 <body>
 
 <div class="container">
-  <nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="/">Reflow</a>
-      </div>
-      <ul class="nav navbar-nav">
-        <li><a href="/">Home</a></li>
-        <li><a href="/archive">Archive.org Example</a></li>
-        <!--<li><a href="#">Page 2</a></li>
-        <li><a href="#">Page 3</a></li>-->
-      </ul>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">Reflow</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="/">Home</a></li>
+                <li><a href="/archive">Archive.org Example</a></li>
+                <!--<li><a href="#">Page 2</a></li>
+                <li><a href="#">Page 3</a></li>-->
+            </ul>
+        </div>
+    </nav>
+
+
+
+    <%= yield %>
+
+    <div class="footer">
+        <p>Copyright © 2016</p>
+        <p><i>Developed by Jacob Hess and Tyler Dougherty</i></p>
     </div>
-  </nav>
-
-
-
-  <%= yield %>
-
-  <div class="footer">
-      <p>Copyright © 2016</p>
-      <p><i>Developed by Jacob Hess and Tyler Dougherty</i></p>
-  </div>
 
 </div>
 

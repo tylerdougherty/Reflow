@@ -16,13 +16,14 @@
 
 .container {
     background: lightcyan;
-    text-align: center;
+    /*text-align: center;*/
 }
 
 .footer {
     height: 100px;
     background: lightblue;
     margin-top: 20px;
+    text-align: center;
 }
 
 .navbar {
