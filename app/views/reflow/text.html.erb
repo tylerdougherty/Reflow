@@ -5,9 +5,7 @@
         <% if @hasNext %><li class="next"><%= link_to 'Next', params.merge(:page => @pageNum+1) %></li><% end %>
     </ul>
 
-    <p>
-        <%= @currentPage.text.html_safe %>
-    </p>
+    <%= @currentPage.text.html_safe %>
 
     <link href="<%= "/book/#{params[:id]}/page/#{@pageNum}/css" %>" rel="stylesheet" type="text/css" />
 

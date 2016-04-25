@@ -1,1 +1,6 @@
+page { zoom:25%; width:auto;}
+
+word { display: inline-block; font-size: 400%; /*color: rgba(0, 0, 0, 0);*/ }
+wrap { display: inline-block; vertical-align: bottom; }
+
 wrap { background-color: green; }
