@@ -151,7 +151,7 @@ class ABBYYFile < Nokogiri::XML::SAX::Document
             top_pad += @line_spacing - top_pad - bot_pad - wh
 
             # css entry for wrapper
-            add_css_line "#wrap_#{@word_num} { padding:#{top_pad}px #{@lr_padding}px #{bot_pad}px; height:#{wh}px; }"
+            add_css_line "#wrap_#{@word_num} { padding:#{top_pad}px #{@lr_padding}px #{bot_pad}px; height:#{@line_spacing}px; }"
         end
 
         # misc. stuff
