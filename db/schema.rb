@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20160204024350) do
     t.string "title"
     t.string "author"
     t.string "archiveID"
+    t.string "description"
   end
 
   create_table "pages", force: :cascade do |t|

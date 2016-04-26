@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
     get '/book/:id(/page/:page)' => 'reflow#text'
     get '/book/:id/page/:page/css' => 'reflow#css'
+    get '/book/:id/page/:page/image' => 'reflow#image'
 
     get '/archive' => 'archive#search'
     get '/archive/search' => 'archive#search'

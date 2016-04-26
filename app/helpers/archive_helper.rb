@@ -80,7 +80,7 @@ module ArchiveHelper
     def download_archive_entry(identifier, abbyy, jp2, metadata_hash)
         Thread.new(identifier, abbyy, jp2, metadata_hash) do |archive_id, abbyy_file, jp2_file, metadata|
             begin
-                b = Book.create(:title => metadata['title'], :archiveID => "#{archive_id}", :author => metadata['creator'] || 'Not listed')
+                b = Book.create(:title => metadata['title'], :archiveID => "#{archive_id}", :author => metadata['creator'], :description => metadata['description'] || 'Not listed')
 
                 download_url = 'https://archive.org/download'
 
