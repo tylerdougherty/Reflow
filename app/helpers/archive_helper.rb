@@ -60,6 +60,23 @@ module ArchiveHelper
         puts '--> unzipped file'
     end
 
+    def convert_images(archive_id)
+        puts '--> converting images'
+
+        jp2s = Dir.glob Rails.root.join('data', 'books', "#{archive_id}", "#{archive_id}_jp2", '*.jp2')
+
+        require 'rmagick'
+
+        jp2s.each do |jp2_file|
+            jp2 = Magick::ImageList.new jp2_file
+            png = jp2.threshold 0.4*Magick::QuantumRange
+
+            #write png
+        end
+
+        puts '--> images converted'
+    end
+
     def download_archive_entry(identifier, abbyy, jp2, metadata_hash)
         Thread.new(identifier, abbyy, jp2, metadata_hash) do |archive_id, abbyy_file, jp2_file, metadata|
             begin
@@ -76,9 +93,13 @@ module ArchiveHelper
                 ungzip Rails.root.join('data', 'books', "#{archive_id}", "#{archive_id}.abbyy.gz").to_s, Rails.root.join('data', 'books', "#{archive_id}", "#{archive_id}.abbyy").to_s
                 unzip Rails.root.join('data', 'books', "#{archive_id}", "#{archive_id}_jp2.zip").to_s, Rails.root.join('data', 'books', "#{archive_id}").to_s
 
+                convert_images archive_id
+
                 require Rails.root.join('scripts', 'xmltothml.rb')
 
                 insert_abbyy_to_db(archive_id, b.id)
+
+                #TODO: delete unneeded files
             rescue Exception => e
                 errors.debug e.message
                 errors.debug e.backtrace.inspect
