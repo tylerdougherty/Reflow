@@ -100,6 +100,8 @@ class ABBYYFile < Nokogiri::XML::SAX::Document
     end
 
     def put_page
+        @current_page_css = "word { background-image:url(/book/#{$archive_id}/page/#{@page_num}/image); }\n" + @current_page_css
+
         Page.create(:book_id => $book_id, :text => @current_page_html, :css => @current_page_css, :number => @page_num)
 
         # #create directories if necessary

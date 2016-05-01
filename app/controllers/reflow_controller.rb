@@ -30,10 +30,9 @@ class ReflowController < ApplicationController
     Mime::Type.register 'image/png', :png
     Mime::Type.register 'image/jp2', :jp2
     def image
-        book = Book.where(id: params[:id])
-        archive_id = book.archiveID
+        archive_id = params[:id]
         image_num = params[:page].to_s.rjust(4,'0')
 
-        send_file Rails.root.join('data', 'books', "#{archive_id}", "#{archive_id}_png", "#{archive_id}_#{image_num}.png"), type: 'image/png', disposition: 'inline'
+        send_file Rails.root.join('data', 'books', "#{archive_id}", 'images', "#{image_num}.png"), type: 'image/png', disposition: 'inline'
     end
 end

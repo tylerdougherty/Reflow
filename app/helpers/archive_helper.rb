@@ -8,7 +8,7 @@ module ArchiveHelper
             begin
                 puts "--> downloading #{source}"
 
-                #create directories if necessary
+                # create directories if necessary
                 require 'fileutils'
 
                 dirname = File.dirname dest
@@ -16,7 +16,7 @@ module ArchiveHelper
                     FileUtils.mkdir_p(dirname)
                 end
 
-                #download the actual file
+                # download the actual file
                 require 'open-uri'
 
                 open(source, 'r') do |fin|
@@ -63,15 +63,19 @@ module ArchiveHelper
     def convert_images(archive_id)
         puts '--> converting images'
 
-        jp2s = Dir.glob Rails.root.join('data', 'books', "#{archive_id}", "#{archive_id}_jp2", '*.jp2')
+        jp2s = Dir.glob Rails.root.join('data', 'books', "#{archive_id}", '*', '*.jp2')
 
-        require 'rmagick'
+        require 'fileutils'
 
+        FileUtils::mkdir_p Rails.root.join('data', 'books', "#{archive_id}", 'images')
+        page = 1
         jp2s.each do |jp2_file|
-            jp2 = Magick::ImageList.new jp2_file
-            png = jp2.threshold 0.4*Magick::QuantumRange
+            index = (File.basename jp2_file, '.*')[-4..-1] # assumes that files are listed with 4 digits
+            out_file = Rails.root.join('data', 'books', "#{archive_id}", 'images', "#{page.to_s.rjust(4,'0')}.png")
 
-            #write png
+            `convert #{jp2_file} -threshold 40% #{out_file}`
+
+            page += 1
         end
 
         puts '--> images converted'
@@ -93,11 +97,11 @@ module ArchiveHelper
                 ungzip Rails.root.join('data', 'books', "#{archive_id}", "#{archive_id}.abbyy.gz").to_s, Rails.root.join('data', 'books', "#{archive_id}", "#{archive_id}.abbyy").to_s
                 unzip Rails.root.join('data', 'books', "#{archive_id}", "#{archive_id}_jp2.zip").to_s, Rails.root.join('data', 'books', "#{archive_id}").to_s
 
-                convert_images archive_id
-
                 require Rails.root.join('scripts', 'xmltothml.rb')
 
                 insert_abbyy_to_db(archive_id, b.id)
+
+                convert_images archive_id
 
                 #TODO: delete unneeded files
             rescue Exception => e
