@@ -46,7 +46,7 @@ class ABBYYFile < Nokogiri::XML::SAX::Document
         when 'line'
             @baseline = attributes['baseline'].to_i
         when 'formatting'
-            add_html_line '<span>'   # TODO: finish handling at some point
+            add_html_line "<span style=\"font-size: #{attributes['fs']}\">"   # TODO: finish handling at some point
         when 'charParams'
             if attributes['wordStart'] == 'true'
                 if @current_word != ''
@@ -103,6 +103,7 @@ class ABBYYFile < Nokogiri::XML::SAX::Document
         @current_page_css = "word { background-image:url(/book/#{$archive_id}/page/#{@page_num}/image); }\n" + @current_page_css
 
         Page.create(:book_id => $book_id, :text => @current_page_html, :css => @current_page_css, :number => @page_num)
+
 
         # #create directories if necessary
         # require 'fileutils'
