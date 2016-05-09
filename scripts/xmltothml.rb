@@ -100,7 +100,7 @@ class ABBYYFile < Nokogiri::XML::SAX::Document
     end
 
     def put_page
-        @current_page_css = "word { background-image:url(/book/#{$archive_id}/page/#{@page_num}/image); }\n" + @current_page_css
+        @current_page_css = "word { background-image:url(/book/#{$book_id}/page/#{@page_num}/image); }\n" + @current_page_css
 
         Page.create(:book_id => $book_id, :text => @current_page_html, :css => @current_page_css, :number => @page_num)
 
@@ -136,7 +136,7 @@ class ABBYYFile < Nokogiri::XML::SAX::Document
         wt = @top
         ww = @right - @left
         wh = @bot - @top
-        wh = wh > @line_spacing ? @line_spacing : wh
+        wh = (wh > @line_spacing and @line_spacing != 0) ? @line_spacing : wh
         # word height on the word element just chooses how much of the background shows up, while
         #   on the wrap element it is the actual size on the page
 
