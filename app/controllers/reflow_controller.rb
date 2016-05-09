@@ -4,19 +4,11 @@ class ReflowController < ApplicationController
     end
 
     def text
-        begin
-            #this doesn't work right now.... not sure what it was supposed to do actually
-            book = Book.where(archiveID: params[:id])
-            @archive_id = book.archiveID
-        rescue
-            #nothing
-        end
-
         @pages = Page.where(book_id: params[:id])
-        @pageNum = (params[:page] != nil) ? params[:page].to_i : 1
-        @hasNext = @pages.length > @pageNum
-        @hasPrevious = @pageNum > 1
-        @currentPage = @pages.find_by(number: @pageNum)
+        @page_num = (params[:page] != nil) ? params[:page].to_i : 1
+        @has_next = @pages.length > @page_num
+        @has_previous = @page_num > 1
+        @current_page = @pages.find_by(number: @page_num)
     end
 
     def css
@@ -30,7 +22,7 @@ class ReflowController < ApplicationController
     Mime::Type.register 'image/png', :png
     Mime::Type.register 'image/jp2', :jp2
     def image
-        archive_id = params[:id]
+        archive_id = Book.where(id:params[:id]).first.archiveID
         image_num = params[:page].to_s.rjust(4,'0')
 
         send_file Rails.root.join('data', 'books', "#{archive_id}", 'images', "#{image_num}.png"), type: 'image/png', disposition: 'inline'
