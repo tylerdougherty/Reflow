@@ -73,7 +73,7 @@ module ArchiveHelper
             index = (File.basename jp2_file, '.*')[-4..-1] # assumes that files are listed with 4 digits
             out_file = Rails.root.join('data', 'books', "#{archive_id}", 'images', "#{page.to_s.rjust(4,'0')}.png")
 
-            `convert #{jp2_file} -threshold 40% #{out_file}`
+            `convert "#{jp2_file}" -threshold 40% "#{out_file}"`
 
             page += 1
         end
@@ -84,7 +84,7 @@ module ArchiveHelper
     def download_archive_entry(identifier, abbyy, jp2, metadata_hash)
         Thread.new(identifier, abbyy, jp2, metadata_hash) do |archive_id, abbyy_file, jp2_file, metadata|
             begin
-                b = Book.create(:title => metadata['title'], :archiveID => "#{archive_id}", :author => metadata['creator'], :description => metadata['description'] || 'Not listed')
+                b = Book.create(:title => metadata['title'], :archiveID => "#{archive_id}", :author => metadata['creator'], :description => metadata['description'], :downloadStatus => 'Downloading' || 'Not listed')
 
                 download_url = 'https://archive.org/download'
 
@@ -98,6 +98,8 @@ module ArchiveHelper
                 unzip Rails.root.join('data', 'books', "#{archive_id}", "#{archive_id}_jp2.zip").to_s, Rails.root.join('data', 'books', "#{archive_id}").to_s
 
                 require Rails.root.join('scripts', 'xmltothml.rb')
+
+                b.update(:downloadStatus => "Done")
 
                 insert_abbyy_to_db(archive_id, b.id)
 

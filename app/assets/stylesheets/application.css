@@ -36,8 +36,13 @@
 
 table.center {
     margin: 0 auto;
+    text-align: center;
 }
 
 td {
     padding: 5px;
+}
+
+th {
+    text-align: center;
 }
