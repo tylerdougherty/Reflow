@@ -5,7 +5,7 @@
     <%= form_tag('/archive/search', method: 'get') do %>
         <button type="submit" class="btn btn-success">Submit</button>
         <div class="search">
-            <%= text_field_tag(:search, params[:search], placeholder: 'Search Internet Archive', class: 'form-control') %>
+            <%= text_field_tag(:search, params[:search], placeholder: 'Search Internet Archive', class: 'form-control', autofocus: 'autofocus') %>
         </div>
     <% end %>
 
