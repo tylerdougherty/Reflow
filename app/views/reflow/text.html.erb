@@ -3,8 +3,13 @@
     <!-- TODO: add actual page number buttons here -->
     <% if @has_next %><li class="next"><%= link_to 'Next', params.merge(:page => @page_num+1) %></li><% end %>
 </ul>
+<ul class="pager" textalign="center">
+    <li class="image"><input type="button" name="answer" value="Image" onclick="showImage();"/></li>
+    <li class="plainText"><input type="button" name="answer" value="Plain Text" onclick="showPlainText();"/></li>
+    <li class="reflow"><input type="button" name="answer" value="Reflow" onclick="showReflow(<%= "#{params[:id]},#{@page_num}" %>);"/></li>
+</ul>
 
-<div class="c1">
+<div id="textDiv" class="c1" style="display:block">
     <% if @spinner  %>
         <%= @current_page.text.html_safe %>
 
@@ -17,7 +22,8 @@
             <div class="sk-cube3 sk-cube"></div>
         </div>
     <% end %>
+</div>
 
-
-
+<div id="imageDiv" class="c1" style="display:none">
+    <img src="<%="/book/#{params[:id]}/page/#{@page_num}/image" %>" height="100%" width="100%" >
 </div>
