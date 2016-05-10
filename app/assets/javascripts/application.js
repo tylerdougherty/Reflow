@@ -14,3 +14,22 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+function showImage() {
+    document.getElementById('imageDiv').style.display = "block";
+    document.getElementById('textDiv').style.display = "none";
+}
+
+function showPlainText() {
+    document.getElementById('imageDiv').style.display = "none";
+    document.getElementById('textDiv').style.display = "block";
+    $("word").css("background-image", "url()");
+    $("word").css("color", "black")
+}
+
+function showReflow(id, page) {
+    document.getElementById('imageDiv').style.display = "none";
+    document.getElementById('textDiv').style.display = "block";
+    $("word").css("background-image", "url(/book/"+id+"/page/"+page+"/image)");
+    $("word").css("color", "rgba(0,0,0,0)")
+}

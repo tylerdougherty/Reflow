@@ -5,6 +5,7 @@ class CreateBooks < ActiveRecord::Migration
       t.string :author
       t.string :archiveID
       t.string :description
+      t.string :downloadStatus
     end
   end
 end

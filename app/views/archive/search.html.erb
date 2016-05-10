@@ -5,7 +5,7 @@
     <%= form_tag('/archive/search', method: 'get') do %>
         <button type="submit" class="btn btn-success">Submit</button>
         <div class="search">
-            <%= text_field_tag(:search, params[:search], placeholder: 'Search Internet Archive', class: 'form-control') %>
+            <%= text_field_tag(:search, params[:search], placeholder: 'Search Internet Archive', class: 'form-control', autofocus: 'autofocus') %>
         </div>
     <% end %>
 
@@ -30,8 +30,10 @@
                         <%= simple_format "<b>#{doc['downloads']}</b> downloads", {class: 'nopad'} %>
                         <%= link_to "#{doc['identifier']}", "https://archive.org/details/#{doc['identifier']}", {class: 'nopad nowrap'} %>
                         <br/>
-                        <% if doc['downloaded'] %>
-                            <%= link_to 'Downloaded', '#', class: 'btn btn-danger disabled', role: 'button' %>
+                        <% if doc['status'] == 'done' %>
+                            <%= link_to 'Read', "/book/#{doc['dbID']}", class: 'btn btn-warning', role: 'button' %>
+                        <% elsif doc['status'] == 'downloading' %>
+                            <%= link_to 'Downloading', '#', class: 'btn btn-danger disabled', role: 'button' %>
                         <% else %>
                             <%= link_to 'Download', 'javascript:void(0);', onclick: "post_download(this, '#{doc['identifier']}')", class: 'btn btn-primary', role: 'button' %>
                         <% end %>

@@ -7,24 +7,25 @@
   <p>A Library of Books</p>
 
 
-  <input type="text" id="search" placeholder="Search for a Book" size="100">
+  <input type="text" id="search" placeholder="Search for a Book" size="75%">
   <p></p>
 
-  <table id="table" class="center" border="1" cellspacing="50" width="600">
-        <tr>
-            <td width="400"><b>Title</b></td>
-            <td width="150"><b>Author</b></td>
-            <td width="50"></td>
-        </tr>
-  </table>
-
   <table id="tabledata" class="center" border="1" cellspacing="50" width="600">
+      <thead>
+        <th width="400"><b>Title</b></th>
+        <th width="150"><b>Author</b></th>
+        <th width="50"></th>
+      </thead>
       <tbody>
         <% @books.each do |book| %>
-          <tr>
+          <tr class="searchable">
             <td width="400"><%= book.title %></td>
             <td width="150"><%= book.author %></td>
-            <td width="50"><%= link_to('Read', "book/#{book['id']}") %></td>
+            <%if book['downloadStatus'] == 'Done' %>
+              <td width="50"><%= link_to('Read', "book/#{book['id']}") %></td>
+            <% else %>
+              <td width="50">Downloading...</td>
+            <% end %>
           </tr>
         <% end %>
       </tbody>
@@ -32,7 +33,7 @@
 </div>
 
 <script>
-    var $rows = $('#tabledata tr');
+    var $rows = $('tr.searchable');
     $('#search').keyup(function() {
         var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
 
