@@ -9,6 +9,9 @@ class ReflowController < ApplicationController
         @has_next = @pages.length > @page_num
         @has_previous = @page_num > 1
         @current_page = @pages.find_by(number: @page_num)
+        archive_id = Book.where(id:params[:id]).first.archiveID
+        image_num = @page_num.to_s.rjust(4,'0')
+        @spinner = (@current_page.nil? || File.exist?(Rails.root.join("data", "books", "#{archive_id}", "images", "#{image_num}.png")))
     end
 
     def css

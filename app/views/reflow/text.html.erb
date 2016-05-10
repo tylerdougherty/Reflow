@@ -5,7 +5,19 @@
 </ul>
 
 <div class="c1">
-    <%= @current_page.text.html_safe %>
+    <% if @spinner  %>
+        <%= @current_page.text.html_safe %>
 
-    <link href="<%= "/book/#{params[:id]}/page/#{@page_num}/css" %>" rel="stylesheet" type="text/css" />
+        <link href="<%= "/book/#{params[:id]}/page/#{@page_num}/css" %>" rel="stylesheet" type="text/css" />
+    <% else %>
+        <div class="sk-folding-cube">
+            <div class="sk-cube1 sk-cube"></div>
+            <div class="sk-cube2 sk-cube"></div>
+            <div class="sk-cube4 sk-cube"></div>
+            <div class="sk-cube3 sk-cube"></div>
+        </div>
+    <% end %>
+
+
+
 </div>
