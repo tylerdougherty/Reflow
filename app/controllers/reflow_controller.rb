@@ -19,8 +19,6 @@ class ReflowController < ApplicationController
         end
     end
 
-    Mime::Type.register 'image/png', :png
-    Mime::Type.register 'image/jp2', :jp2
     def image
         archive_id = Book.where(id:params[:id]).first.archiveID
         image_num = params[:page].to_s.rjust(4,'0')

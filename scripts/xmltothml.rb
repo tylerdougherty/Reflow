@@ -28,6 +28,37 @@ class ABBYYFile < Nokogiri::XML::SAX::Document
         @bot = 0
     end
 
+    def parse_formatting(attributes)
+        styles = ''
+
+        attributes.each do |tag, value|
+            case tag
+            when 'align'
+                styles += "text-align:#{value}; "
+            when 'fs'
+                styles += "font-size:#{value.to_i}pt; "
+            when 'ff'
+                styles += "font-family:'#{value}'; "
+            when 'italic'
+                styles += 'font-style:italic; '
+            when 'bold'
+                styles += 'font-weight:bold; '
+            when 'smallcaps'
+                styles += 'font-variant:small-caps; '
+            when 'superscript'
+                styles += 'vertical-align:super; '
+            when 'subscript'
+                styles += 'vertical-align:sub; '
+            else
+                # unhandled attribute
+            end
+        end
+
+        # style=font-size: #{attributes['fs']}
+
+        "style=\"#{styles}\""
+    end
+
     def start_element(tag, attributes)
         attributes = attributes.to_h # The info in the tag
 
@@ -46,7 +77,7 @@ class ABBYYFile < Nokogiri::XML::SAX::Document
         when 'line'
             @baseline = attributes['baseline'].to_i
         when 'formatting'
-            add_html_line "<span style=\"font-size: #{attributes['fs']}\">"   # TODO: finish handling at some point
+            add_html_line "<span #{parse_formatting attributes}>"   # TODO: finish handling at some point
         when 'charParams'
             if attributes['wordStart'] == 'true'
                 if @current_word != ''
@@ -74,6 +105,8 @@ class ABBYYFile < Nokogiri::XML::SAX::Document
             add_html_line '</block>'
         when 'par'
             add_html_line '</p>'
+        when 'line'
+            add_html_line '<br />' # TODO: maybe turn this off
         when 'formatting'
             if @current_word != ''
                 print_word
@@ -149,12 +182,22 @@ class ABBYYFile < Nokogiri::XML::SAX::Document
         if @line_spacing != 0 and wh < @line_spacing
             top_to_baseline = @line_spacing * @baseline_percent
             top_pad = top_to_baseline - (@baseline - @top)
-            bot_pad = (@line_spacing - top_to_baseline) - (@bot - @baseline)
 
-            top_pad += @line_spacing - top_pad - bot_pad - wh
+            # important one; lines up the baseline regardless of top_pad
+            bot_pad = (@line_spacing - top_to_baseline) - (@bot - @baseline)
+            wrap_height = @line_spacing
+
+            if top_pad < 0
+                wrap_height -= top_pad
+                top_pad = 0
+            else
+                # any unaccounted-for space
+                top_pad += @line_spacing - top_pad - bot_pad - wh
+            end
 
             # css entry for wrapper
-            add_css_line "#wrap_#{@word_num} { padding:#{top_pad}px #{@lr_padding}px #{bot_pad}px; height:#{@line_spacing}px; }"
+            add_css_line "#wrap_#{@word_num} { padding:#{top_pad}px #{0.15*wh}px #{bot_pad}px; height:#{wrap_height}px; }"
+            # add_css_line "#wrap_#{@word_num} { margin:#{top_pad}px #{0.2*wh}px #{bot_pad}px; height:#{wh}px; }"
         end
 
         # misc. stuff
