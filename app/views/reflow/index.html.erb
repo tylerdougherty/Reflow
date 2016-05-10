@@ -7,14 +7,14 @@
   <p>A Library of Books</p>
 
 
-  <input type="text" id="search" placeholder="Search for a Book" size="75%">
+  <input type="text" id="search" placeholder="Search for a Book" size="75%" class="form-control">
   <p></p>
 
-  <table id="tabledata" class="center" border="1" cellspacing="50" width="600">
+  <table id="tabledata" class="center" cellspacing="50">
       <thead>
-        <th width="400"><b>Title</b></th>
-        <th width="150"><b>Author</b></th>
-        <th width="50"></th>
+        <th width="600"><b>Title</b></th>
+        <th width="250"><b>Author</b></th>
+        <th width="150"></th>
       </thead>
       <tbody>
         <% @books.each do |book| %>
