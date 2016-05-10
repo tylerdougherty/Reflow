@@ -49,6 +49,8 @@ class ABBYYFile < Nokogiri::XML::SAX::Document
                 styles += 'vertical-align:super; '
             when 'subscript'
                 styles += 'vertical-align:sub; '
+            when 'leftIndent'
+                styles += "margin-left:#{value.to_i + (attributes.has_key?('startIndent') ? attributes['startIndent'].to_i : 0)}px; "
             else
                 # unhandled attribute
             end
@@ -71,7 +73,7 @@ class ABBYYFile < Nokogiri::XML::SAX::Document
             add_html_line "<block id=\"block_#{@block_num}\" class=\"#{attributes['blockType']}\">"
             @block_num += 1
         when 'par'
-            add_html_line "<p id=\"p_#{@par_num}\">"
+            add_html_line "<p id=\"p_#{@par_num}\" #{parse_formatting attributes}>"
             @par_num += 1
             @line_spacing = attributes.has_key?('lineSpacing') ? attributes['lineSpacing'].to_i : 0
         when 'line'
@@ -106,7 +108,7 @@ class ABBYYFile < Nokogiri::XML::SAX::Document
         when 'par'
             add_html_line '</p>'
         when 'line'
-            add_html_line '<br />' # TODO: maybe turn this off
+            # add_html_line '<br />' # TODO: maybe turn this off
         when 'formatting'
             if @current_word != ''
                 print_word
