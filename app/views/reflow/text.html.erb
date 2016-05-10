@@ -3,11 +3,19 @@
     <!-- TODO: add actual page number buttons here -->
     <% if @has_next %><li class="next"><%= link_to 'Next', params.merge(:page => @page_num+1) %></li><% end %>
 </ul>
-<ul class="pager" textalign="center">
-    <li class="image"><input type="button" name="answer" value="Image" onclick="showImage();"/></li>
-    <li class="plainText"><input type="button" name="answer" value="Plain Text" onclick="showPlainText();"/></li>
-    <li class="reflow"><input type="button" name="answer" value="Reflow" onclick="showReflow(<%= "#{params[:id]},#{@page_num}" %>);"/></li>
-</ul>
+<!--<ul class="pager" textalign="center">-->
+    <!--<li class="image btn btn-default"><input type="button" name="answer" value="Image" onclick="showImage();"/></li>-->
+    <!--<li class="plainText btn btn-default"><input type="button" name="answer" value="Plain Text" onclick="showPlainText();"/></li>-->
+    <!--<li class="reflow btn btn-default"><input type="button" name="answer" value="Reflow" onclick="showReflow(<%= "#{params[:id]},#{@page_num}" %>);"/></li>-->
+<!--</ul>-->
+
+<div class="center">
+    <button type="button" class="btn btn-default" onclick="showImage();">Image</button>
+    <button type="button" class="btn btn-default" onclick="showReflow(<%= "#{params[:id]},#{@page_num}" %>);">Reflow</button>
+    <button type="button" class="btn btn-default" onclick="showPlainText();">Plain Text</button>
+</div>
+
+<br />
 
 <div id="textDiv" class="c1" style="display:block">
     <% if @spinner  %>
